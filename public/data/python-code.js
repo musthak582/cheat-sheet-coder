@@ -49,7 +49,7 @@ export const pythonCodeBlocks = [
   },
   {
     id: 'variables_and_assignment',
-    label: 'Variables and Assignment',
+    label: 'Variables & Assignment',
     content: `
   # Variables in Python are used to store data values.
   # Python has no command for declaring a variable. A variable is created the moment you first assign a value to it.
@@ -257,7 +257,7 @@ export const pythonCodeBlocks = [
   },
   {
     id: 'strings_and_string_methods',
-    label: 'Strings and String Methods',
+    label: 'Strings & String Methods',
     content: `
   # Strings and String Methods in Python
   
@@ -472,7 +472,1096 @@ export const pythonCodeBlocks = [
   length_of_dict = len(my_dict)   # 2 (number of key-value pairs in the dictionary)
   `
   },
+  {
+    id: 'conditional_statements',
+    label: 'Conditional Statements',
+    content: `
+  # Conditional Statements in Python
   
+  # if statement
+  age = 18
+  if age >= 18:
+      print("You are an adult.")  # Output: You are an adult.
   
-   
+  # if-else statement
+  is_raining = False
+  if is_raining:
+      print("Take an umbrella.")
+  else:
+      print("Enjoy the sunshine.")  # Output: Enjoy the sunshine.
+  
+  # if-elif-else statement
+  score = 85
+  if score >= 90:
+      print("Grade: A")
+  elif score >= 80:
+      print("Grade: B")  # Output: Grade: B
+  elif score >= 70:
+      print("Grade: C")
+  else:
+      print("Grade: D")
+  
+  # Nested if statements
+  temperature = 30
+  if temperature > 20:
+      if temperature < 30:
+          print("The weather is warm.")  # Output: The weather is warm.
+      else:
+          print("The weather is hot.")
+  else:
+      print("The weather is cool.")
+  
+  # Ternary conditional operator
+  number = 5
+  parity = "even" if number % 2 == 0 else "odd"
+  print(parity)  # Output: odd
+  `
+  },
+  {
+    id: 'loops',
+    label: 'Loops',
+    content: `
+  # Loops in Python
+  
+  # for loop: iterating over a list
+  fruits = ["apple", "banana", "cherry"]
+  for fruit in fruits:
+      print(fruit)
+  # Output:
+  # apple
+  # banana
+  # cherry
+  
+  # for loop: iterating over a range
+  for i in range(5):
+      print(i)
+  # Output:
+  # 0
+  # 1
+  # 2
+  # 3
+  # 4
+  
+  # while loop: repeating until a condition is met
+  count = 0
+  while count < 5:
+      print("Count:", count)
+      count += 1
+  # Output:
+  # Count: 0
+  # Count: 1
+  # Count: 2
+  # Count: 3
+  # Count: 4
+  
+  # Using break to exit a loop early
+  for i in range(10):
+      if i == 5:
+          break
+      print(i)
+  # Output:
+  # 0
+  # 1
+  # 2
+  # 3
+  # 4
+  
+  # Using continue to skip to the next iteration
+  for i in range(10):
+      if i % 2 == 0:
+          continue
+      print(i)
+  # Output:
+  # 1
+  # 3
+  # 5
+  # 7
+  # 9
+  
+  # Nested loops
+  for i in range(3):
+      for j in range(2):
+          print(f"i: {i}, j: {j}")
+  # Output:
+  # i: 0, j: 0
+  # i: 0, j: 1
+  # i: 1, j: 0
+  # i: 1, j: 1
+  # i: 2, j: 0
+  # i: 2, j: 1
+  `
+  },
+  {
+    id: 'loop_control',
+    label: 'Loop Control',
+    content: `
+  # Loop Control in Python
+  
+  # Using 'break' to exit a loop prematurely
+  # The 'break' statement stops the loop even if the condition is still true.
+  for number in range(1, 11):
+      if number == 5:
+          break
+      print(number)
+  # Output:
+  # 1
+  # 2
+  # 3
+  # 4
+  # Loop stops here because of 'break'
+  
+  # Using 'continue' to skip the current iteration and continue with the next one
+  # The 'continue' statement skips the rest of the code inside the loop for the current iteration.
+  for number in range(1, 11):
+      if number % 2 == 0:
+          continue
+      print(number)
+  # Output:
+  # 1
+  # 3
+  # 5
+  # 7
+  # 9
+  # Even numbers are skipped due to 'continue'
+  
+  # Using 'else' with loops
+  # The 'else' block runs when the loop finishes normally (no 'break' occurred).
+  for number in range(1, 6):
+      print(number)
+  else:
+      print("Loop completed successfully")
+  # Output:
+  # 1
+  # 2
+  # 3
+  # 4
+  # 5
+  # Loop completed successfully
+  
+  # Using 'else' with loops and 'break'
+  # The 'else' block does not run if the loop exits due to a 'break' statement.
+  for number in range(1, 6):
+      if number == 3:
+          break
+      print(number)
+  else:
+      print("Loop completed successfully")
+  # Output:
+  # 1
+  # 2
+  # Loop stops at 3 and 'else' block does not execute
+  
+  # Nested loops with control statements
+  # 'break' or 'continue' can be used inside nested loops to control their execution.
+  for i in range(3):
+      for j in range(3):
+          if j == 1:
+              break  # Breaks the inner loop only
+          print(f"i: {i}, j: {j}")
+  # Output:
+  # i: 0, j: 0
+  # i: 1, j: 0
+  # i: 2, j: 0
+  # The inner loop breaks at j == 1, but the outer loop continues
+  
+  # Using 'pass' in loops
+  # The 'pass' statement is a placeholder that does nothing; it is often used for syntactic reasons.
+  for number in range(1, 6):
+      if number % 2 == 0:
+          pass  # Placeholder for future code
+      print(number)
+  # Output:
+  # 1
+  # 2
+  # 3
+  # 4
+  # 5
+  # 'pass' does nothing and the loop continues as usual
+  `
+  },
+  {
+    id: 'functions',
+    label: 'Functions',
+    content: `
+  # Functions in Python
+  
+  # Basic function definition
+  def greet(name):
+      """
+      This function greets the person passed as an argument.
+      :param name: The name of the person to greet.
+      """
+      return f"Hello, {name}!"
+  
+  # Calling the function
+  print(greet("Alice"))
+  # Output: Hello, Alice!
+  
+  # Function with multiple parameters
+  def add(a, b):
+      """
+      This function returns the sum of two numbers.
+      :param a: The first number.
+      :param b: The second number.
+      """
+      return a + b
+  
+  # Calling the function
+  result = add(5, 3)
+  print(result)
+  # Output: 8
+  
+  # Function with default parameter values
+  def describe_pet(pet_name, animal_type="dog"):
+      """
+      This function displays information about a pet.
+      :param pet_name: The name of the pet.
+      :param animal_type: The type of animal (default is 'dog').
+      """
+      print(f"I have a {animal_type} named {pet_name}.")
+  
+  # Calling the function with and without the default parameter
+  describe_pet("Buddy")
+  # Output: I have a dog named Buddy.
+  describe_pet("Whiskers", "cat")
+  # Output: I have a cat named Whiskers.
+  
+  # Function with variable-length arguments (*args)
+  def summarize(*numbers):
+      """
+      This function returns the sum of all numbers passed as arguments.
+      :param numbers: A list of numbers to sum up.
+      """
+      return sum(numbers)
+  
+  # Calling the function with different numbers of arguments
+  print(summarize(1, 2, 3))
+  # Output: 6
+  print(summarize(4, 5, 6, 7, 8))
+  # Output: 30
+  
+  # Function with keyword arguments (**kwargs)
+  def build_profile(first, last, **user_info):
+      """
+      This function builds a dictionary containing user profile information.
+      :param first: The first name of the user.
+      :param last: The last name of the user.
+      :param user_info: Other keyword arguments for additional profile details.
+      """
+      profile = {'first_name': first, 'last_name': last}
+      profile.update(user_info)
+      return profile
+  
+  # Calling the function with keyword arguments
+  user_profile = build_profile('John', 'Doe', location='New York', occupation='Engineer')
+  print(user_profile)
+  # Output: {'first_name': 'John', 'last_name': 'Doe', 'location': 'New York', 'occupation': 'Engineer'}
+  
+  # Lambda (anonymous) functions
+  # A lambda function to add two numbers
+  add = lambda x, y: x + y
+  print(add(5, 3))
+  # Output: 8
+  
+  # Higher-order function using a lambda
+  def apply_operation(x, func):
+      """
+      This function applies a given function to a value.
+      :param x: The value to be processed.
+      :param func: The function to apply.
+      """
+      return func(x)
+  
+  # Using a lambda with the higher-order function
+  result = apply_operation(10, lambda n: n * 2)
+  print(result)
+  # Output: 20
+  
+  # Recursion: a function calling itself
+  def factorial(n):
+      """
+      This function returns the factorial of a number using recursion.
+      :param n: The number to calculate the factorial for.
+      """
+      if n == 0:
+          return 1
+      else:
+          return n * factorial(n - 1)
+  
+  # Calling the recursive function
+  print(factorial(5))
+  # Output: 120
+  `
+  },
+  {
+    id: 'modules_and_packages',
+    label: 'Modules & Packages',
+    content: `
+  # Modules and Packages in Python
+  
+  # Creating and Using Modules
+  
+  # my_module.py
+  # This is a simple module with a function and a variable.
+  def greet(name):
+      return f"Hello, {name}!"
+  
+  pi = 3.14159
+  
+  # Using the module in another script
+  # main.py
+  import my_module
+  
+  # Using the function from the module
+  print(my_module.greet("Alice"))
+  # Output: Hello, Alice!
+  
+  # Accessing the variable from the module
+  print(my_module.pi)
+  # Output: 3.14159
+  
+  # Importing specific functions or variables from a module
+  from my_module import greet, pi
+  
+  # Now we can use greet and pi directly without prefixing with 'my_module.'
+  print(greet("Bob"))
+  # Output: Hello, Bob!
+  print(pi)
+  # Output: 3.14159
+  
+  # Renaming an imported module using an alias
+  import my_module as mm
+  
+  print(mm.greet("Charlie"))
+  # Output: Hello, Charlie!
+  
+  # Working with Packages
+  
+  # Directory structure for a package:
+  # my_package/
+  # ├── __init__.py
+  # ├── module1.py
+  # └── module2.py
+  
+  # __init__.py can be empty or used to initialize the package.
+  # It allows the directory to be treated as a package.
+  
+  # module1.py
+  def add(a, b):
+      return a + b
+  
+  # module2.py
+  def subtract(a, b):
+      return a - b
+  
+  # Using the package in another script
+  # main.py
+  from my_package import module1, module2
+  
+  # Using functions from the modules within the package
+  print(module1.add(5, 3))
+  # Output: 8
+  print(module2.subtract(10, 4))
+  # Output: 6
+  
+  # Importing all functions from a module using *
+  from my_package.module1 import *
+  
+  # Now we can use add directly
+  print(add(7, 2))
+  # Output: 9
+  
+  # Importing a specific function with alias
+  from my_package.module2 import subtract as sub
+  
+  print(sub(9, 5))
+  # Output: 4
+  
+  # Advanced: Importing modules dynamically
+  import importlib
+  
+  # Load module1 dynamically from my_package
+  module1_dynamic = importlib.import_module('my_package.module1')
+  print(module1_dynamic.add(4, 6))
+  # Output: 10
+  
+  # Note: Use dynamic imports with caution as it may complicate code readability and debugging.
+  `
+  },
+  {
+    id: 'file_handling',
+    label: 'File Handling',
+    content: `
+  # File Handling in Python
+  
+  # Opening and Reading Files
+  
+  # Open a file for reading (default mode)
+  file = open('example.txt', 'r')
+  # Read the entire content of the file
+  content = file.read()
+  print(content)
+  # Always close the file after use
+  file.close()
+  
+  # Using 'with' statement for better resource management
+  with open('example.txt', 'r') as file:
+      # Read the entire content of the file
+      content = file.read()
+      print(content)
+  # The file is automatically closed when the block is exited
+  
+  # Reading lines from a file
+  with open('example.txt', 'r') as file:
+      for line in file:
+          print(line.strip())  # strip() removes any trailing newline characters
+  
+  # Writing to Files
+  
+  # Open a file for writing (creates the file if it doesn't exist)
+  with open('output.txt', 'w') as file:
+      file.write("Hello, world!\n")
+      file.write("This is a test file.")
+  
+  # Writing multiple lines at once
+  lines = ["First line\n", "Second line\n", "Third line\n"]
+  with open('output.txt', 'w') as file:
+      file.writelines(lines)
+  
+  # Appending to Files
+  
+  # Open a file for appending
+  with open('output.txt', 'a') as file:
+      file.write("Appending a new line.\n")
+  
+  # Reading and Writing Binary Files
+  
+  # Open a binary file for reading
+  with open('image.png', 'rb') as file:
+      binary_content = file.read()
+      print(binary_content[:20])  # Print first 20 bytes
+  
+  # Open a binary file for writing
+  with open('copy.png', 'wb') as file:
+      file.write(binary_content)
+  
+  # Useful File Handling Functions
+  
+  # Checking if a file exists
+  import os
+  if os.path.exists('output.txt'):
+      print("The file exists.")
+  else:
+      print("The file does not exist.")
+  
+  # Getting the size of a file
+  file_size = os.path.getsize('output.txt')
+  print(f"The file size is {file_size} bytes.")
+  
+  # Renaming a file
+  os.rename('output.txt', 'renamed_output.txt')
+  
+  # Deleting a file
+  os.remove('renamed_output.txt')
+  
+  # Error Handling
+  
+  try:
+      with open('non_existent_file.txt', 'r') as file:
+          content = file.read()
+  except FileNotFoundError:
+      print("The file was not found.")
+  except IOError:
+      print("An I/O error occurred.")
+  
+  `
+  },
+  {
+    id: 'exception_handling',
+    label: 'Exception Handling',
+    content: `
+  # Exception Handling in Python
+  
+  # Basic try-except block
+  try:
+      # Code that might raise an exception
+      result = 10 / 0  # This will raise a ZeroDivisionError
+  except ZeroDivisionError:
+      # Code that runs if the exception occurs
+      print("You cannot divide by zero!")
+  
+  # Catching multiple exceptions
+  try:
+      num = int(input("Enter a number: "))
+      result = 100 / num
+  except ValueError:
+      # Handles cases where input is not an integer
+      print("Invalid input! Please enter a valid number.")
+  except ZeroDivisionError:
+      # Handles division by zero
+      print("You cannot divide by zero!")
+  
+  # Handling all exceptions
+  try:
+      result = 10 / 0
+  except Exception as e:
+      # Catches any exception and prints its message
+      print(f"An error occurred: {e}")
+  
+  # Using else clause
+  try:
+      num = int(input("Enter a number: "))
+      result = 100 / num
+  except ZeroDivisionError:
+      print("You cannot divide by zero!")
+  except ValueError:
+      print("Invalid input! Please enter a valid number.")
+  else:
+      # Executed if no exception occurs
+      print(f"Result is: {result}")
+  
+  # Using finally clause
+  try:
+      file = open('example.txt', 'r')
+      content = file.read()
+      print(content)
+  except FileNotFoundError:
+      print("File not found!")
+  finally:
+      # Always executed, regardless of whether an exception occurs
+      file.close()
+  
+  # Raising exceptions manually
+  def check_age(age):
+      if age < 0:
+          # Raises a ValueError if the age is less than 0
+          raise ValueError("Age cannot be negative!")
+      print(f"Valid age: {age}")
+  
+  try:
+      check_age(-5)
+  except ValueError as e:
+      print(f"Error: {e}")
+  
+  # Custom exceptions
+  
+  # Define a custom exception class
+  class CustomError(Exception):
+      def __init__(self, message):
+          self.message = message
+  
+  # Function using custom exception
+  def check_even(number):
+      if number % 2 != 0:
+          # Raise custom exception if number is not even
+          raise CustomError("The number is not even!")
+      print(f"{number} is an even number.")
+  
+  try:
+      check_even(3)
+  except CustomError as e:
+      print(f"Custom error: {e.message}")
+  
+  `
+  },
+  {
+    id: 'object_oriented_programming',
+    label: 'OOP',
+    content: `
+  # Object-Oriented Programming (OOP) in Python
+  
+  # Class definition
+  class Animal:
+      # Class attribute
+      species = "Animal"
+      
+      # Initializer / Instance attributes
+      def __init__(self, name, age):
+          self.name = name  # Instance attribute
+          self.age = age    # Instance attribute
+  
+      # Instance method
+      def speak(self):
+          return f"{self.name} makes a noise."
+  
+      # Class method
+      @classmethod
+      def info(cls):
+          return f"This is a {cls.species}."
+  
+      # Static method
+      @staticmethod
+      def is_animal(thing):
+          return isinstance(thing, Animal)
+  
+  # Creating instances (objects) of the class
+  dog = Animal("Buddy", 5)
+  cat = Animal("Whiskers", 3)
+  
+  # Accessing instance attributes and methods
+  print(dog.name)          # Output: Buddy
+  print(cat.age)           # Output: 3
+  print(dog.speak())       # Output: Buddy makes a noise.
+  
+  # Accessing class methods
+  print(Animal.info())     # Output: This is a Animal
+  print(dog.info())        # Output: This is a Animal
+  
+  # Accessing static methods
+  print(Animal.is_animal(dog))  # Output: True
+  print(Animal.is_animal("not an animal"))  # Output: False
+  
+  # Inheritance
+  class Dog(Animal):
+      # New attribute for the subclass
+      species = "Dog"
+  
+      # Method overriding
+      def speak(self):
+          return f"{self.name} barks."
+  
+  # Creating an instance of the subclass
+  my_dog = Dog("Rex", 2)
+  
+  # Accessing overridden method
+  print(my_dog.speak())  # Output: Rex barks.
+  
+  # Checking class and subclass relationships
+  print(isinstance(my_dog, Dog))     # Output: True
+  print(isinstance(my_dog, Animal))  # Output: True
+  
+  # Encapsulation
+  class Account:
+      def __init__(self, owner, balance):
+          self.owner = owner
+          self.__balance = balance  # Private attribute (by convention)
+      
+      def deposit(self, amount):
+          if amount > 0:
+              self.__balance += amount
+              print(f"Added {amount} to the balance")
+          else:
+              print("Enter a valid amount.")
+      
+      def withdraw(self, amount):
+          if amount <= self.__balance:
+              self.__balance -= amount
+              print(f"Withdrew {amount} from the balance")
+          else:
+              print("Insufficient funds.")
+      
+      def get_balance(self):
+          return self.__balance
+  
+  # Creating an instance of Account
+  my_account = Account("Alice", 1000)
+  
+  # Interacting with encapsulated data
+  my_account.deposit(500)      # Output: Added 500 to the balance
+  my_account.withdraw(200)     # Output: Withdrew 200 from the balance
+  print(my_account.get_balance())  # Output: 1300
+  `
+  },
+  {
+    id: 'map_filter_reduce_functions',
+    label: 'Map, Filter, Reduce Functions',
+    content: `
+  # Functional Programming in Python: Map, Filter, Reduce
+  
+  # Map function example
+  # Applying a function to each item in a list
+  numbers = [1, 2, 3, 4, 5]
+  squared_numbers = list(map(lambda x: x ** 2, numbers))
+  print(squared_numbers)  # Output: [1, 4, 9, 16, 25]
+  
+  # Filter function example
+  # Filtering items in a list based on a condition
+  even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+  print(even_numbers)  # Output: [2, 4]
+  
+  # Reduce function example (from functools module)
+  # Reducing a list to a single value using a binary function
+  from functools import reduce
+  sum_of_numbers = reduce(lambda x, y: x + y, numbers)
+  print(sum_of_numbers)  # Output: 15
+  `
+  },
+  {
+    id: 'list_comprehensions_generator_expressions',
+    label: 'Comprehensions & Expressions',
+    content: `
+  # List Comprehensions and Generator Expressions in Python
+  
+  # List comprehension to create a list of squares
+  squares = [x ** 2 for x in range(1, 6)]
+  print(squares)  # Output: [1, 4, 9, 16, 25]
+  
+  # List comprehension with a condition
+  even_squares = [x ** 2 for x in range(1, 6) if x % 2 == 0]
+  print(even_squares)  # Output: [4, 16]
+  
+  # Generator expression to create a generator of squares
+  square_gen = (x ** 2 for x in range(1, 6))
+  for square in square_gen:
+      print(square)  # Output: 1 4 9 16 25 (printed one by one)
+  `
+  },
+  {
+    id: 'decorators',
+    label: 'Decorators',
+    content: `
+  # Decorators in Python
+  
+  # Basic decorator example
+  def simple_decorator(func):
+      def wrapper():
+          print("Before the function call.")
+          func()
+          print("After the function call.")
+      return wrapper
+  
+  @simple_decorator
+  def say_hello():
+      print("Hello!")
+  
+  say_hello()
+  # Output:
+  # Before the function call.
+  # Hello!
+  # After the function call.
+  
+  # Decorator with arguments
+  def decorator_with_args(func):
+      def wrapper(*args, **kwargs):
+          print(f"Arguments passed: {args}, {kwargs}")
+          return func(*args, **kwargs)
+      return wrapper
+  
+  @decorator_with_args
+  def add(a, b):
+      return a + b
+  
+  result = add(5, 3)
+  print(result)  # Output: 8 Arguments passed: (5, 3)
+                 
+  `
+  },
+  {
+    id: 'closures',
+    label: 'Closures',
+    content: `
+  # Closures in Python
+  
+  # Closure example
+  def outer_function(message):
+      def inner_function():
+          print(message)
+      return inner_function
+  
+  # Create a closure
+  hello_closure = outer_function("Hello, World!")
+  
+  # Call the closure
+  hello_closure()  # Output: Hello, World!
+  
+  # Another closure example for counter
+  def make_counter():
+      count = 0
+      def increment():
+          nonlocal count
+          count += 1
+          return count
+      return increment
+  
+  counter = make_counter()
+  print(counter())  # Output: 1
+  print(counter())  # Output: 2
+  `
+  },
+  {
+    id: 'iterators_and_generators',
+    label: 'Iterators & Generators',
+    content: `
+  # Iterators and Generators in Python
+  
+  # Iterators example
+  class Counter:
+      def __init__(self, start, end):
+          self.current = start
+          self.end = end
+      
+      def __iter__(self):
+          return self
+      
+      def __next__(self):
+          if self.current > self.end:
+              raise StopIteration
+          else:
+              self.current += 1
+              return self.current - 1
+  
+  # Using the iterator
+  counter = Counter(1, 5)
+  for num in counter:
+      print(num)
+  
+  # Generators example
+  def fibonacci(n):
+      a, b = 0, 1
+      count = 0
+      while count < n:
+          yield a
+          a, b = b, a + b
+          count += 1
+  
+  # Using the generator
+  fib = fibonacci(5)
+  print("Fibonacci sequence:")
+  for num in fib:
+      print(num)
+  `
+  },
+  {
+    id: 'context_managers',
+    label: 'Context Managers',
+    content: `
+  # Context Managers in Python
+  
+  # Using context manager with 'with' statement
+  with open('example.txt', 'w') as file:
+      file.write('Hello, Python!')
+  
+  # Custom context manager
+  class DatabaseConnection:
+      def __enter__(self):
+          print("Opening database connection")
+          # Code to establish database connection
+          return self
+      
+      def __exit__(self, exc_type, exc_val, exc_tb):
+          print("Closing database connection")
+          # Code to close database connection
+  
+  # Using custom context manager
+  with DatabaseConnection() as db_conn:
+      # Perform database operations
+      print("Executing database query")
+      # Example database query
+      # db_conn.query('SELECT * FROM table')
+  `
+  },
+  {
+    id: 'regular_expressions',
+    label: 'Regular Expressions',
+    content: `
+  # Regular Expressions in Python
+  
+  import re
+  
+  # Example of matching a pattern
+  text = "Hello, Python!"
+  pattern = r'Hello, (\w+)!'
+  match = re.search(pattern, text)
+  if match:
+      print("Pattern found:", match.group(1))
+  
+  # Example of replacing text using regex
+  text = "Python is fun!"
+  pattern = r'fun'
+  replaced_text = re.sub(pattern, 'awesome', text)
+  print("Replaced text:", replaced_text)
+  
+  # Example of splitting text using regex
+  text = "apple, banana; cherry.orange"
+  pattern = r'[;,.\s]+'
+  splitted_text = re.split(pattern, text)
+  print("Splitted text:", splitted_text)
+  `
+  },
+  {
+    id: 'networking_and_apis',
+    label: 'Networking and APIs',
+    content: `
+  # Networking and APIs in Python
+  
+  import requests
+  
+  # Making a GET request
+  response = requests.get('https://api.example.com/data')
+  if response.status_code == 200:
+      data = response.json()
+      print("Data retrieved:", data)
+  else:
+      print("Error:", response.status_code)
+  
+  # Making a POST request
+  payload = {'key': 'value'}
+  response = requests.post('https://api.example.com/submit', json=payload)
+  if response.status_code == 200:
+      print("Submission successful")
+  else:
+      print("Error:", response.status_code)
+  `
+  },
+  {
+    id: 'asynchronous_programming',
+    label: 'Asynchronous Programming',
+    content: `
+  # Asynchronous Programming with asyncio in Python
+  
+  import asyncio
+  
+  # Async function example
+  async def fetch_data(url):
+      print(f"Fetching data from {url}")
+      await asyncio.sleep(1)  # Simulate network delay
+      return f"Data from {url}"
+  
+  # Asyncio event loop
+  async def main():
+      tasks = [fetch_data('https://api.example.com/data') for _ in range(3)]
+      results = await asyncio.gather(*tasks)
+      print("Results:", results)
+  
+  # Running the event loop
+  if __name__ == "__main__":
+      asyncio.run(main())
+  `
+  },
+  {
+    id: 'working_with_numpy',
+    label: 'Numpy',
+    content: `
+  # Working with numpy in Python
+  
+  import numpy as np
+  
+  # Creating numpy arrays
+  arr1 = np.array([1, 2, 3, 4, 5])
+  arr2 = np.array([[1, 2, 3], [4, 5, 6]])
+  
+  # Basic operations with numpy arrays
+  print("Shape of arr1:", arr1.shape)
+  print("Shape of arr2:", arr2.shape)
+  
+  # Element-wise operations
+  arr_sum = arr1 + arr2
+  arr_prod = arr1 * arr2
+  
+  # Matrix multiplication
+  arr_dot = np.dot(arr1, arr2.T)
+  
+  # Statistical operations
+  mean_arr1 = np.mean(arr1)
+  std_dev_arr2 = np.std(arr2)
+  
+  # Generating random numbers
+  rand_arr = np.random.rand(3, 3)
+  
+  print("Array sum:", arr_sum)
+  print("Array product:", arr_prod)
+  print("Array dot product:", arr_dot)
+  print("Mean of arr1:", mean_arr1)
+  print("Standard deviation of arr2:", std_dev_arr2)
+  print("Random array:", rand_arr)
+  `
+  },
+  {
+    id: 'data_manipulation_with_pandas',
+    label: 'Pandas',
+    content: `
+  # Data Manipulation with pandas in Python
+  
+  import pandas as pd
+  
+  # Creating a DataFrame
+  data = {
+      'Name': ['Alice', 'Bob', 'Charlie'],
+      'Age': [25, 30, 35],
+      'City': ['New York', 'Los Angeles', 'Chicago']
+  }
+  df = pd.DataFrame(data)
+  
+  # Displaying the DataFrame
+  print("DataFrame:")
+  print(df)
+  
+  # Basic operations with pandas DataFrame
+  print("Column names:", df.columns)
+  print("Shape of DataFrame:", df.shape)
+  print("Data types:")
+  print(df.dtypes)
+  
+  # Selecting data
+  print("Name column:")
+  print(df['Name'])
+  
+  # Filtering data
+  filtered_df = df[df['Age'] > 25]
+  print("Filtered DataFrame:")
+  print(filtered_df)
+  `
+  },
+  {
+    id: 'basic_plotting_with_matplotlib_seaborn',
+    label: 'Matplotlib & Seaborn',
+    content: `
+  # Basic Plotting with matplotlib and seaborn in Python
+  
+  import matplotlib.pyplot as plt
+  import seaborn as sns
+  
+  # Data for plotting
+  x = [1, 2, 3, 4, 5]
+  y = [2, 4, 6, 8, 10]
+  
+  # Plotting with matplotlib
+  plt.figure(figsize=(8, 4))
+  plt.plot(x, y, marker='o', linestyle='--', color='b', label='Line Plot')
+  plt.title('Line Plot with Matplotlib')
+  plt.xlabel('X-axis')
+  plt.ylabel('Y-axis')
+  plt.legend()
+  plt.grid(True)
+  plt.show()
+  
+  # Plotting with seaborn
+  sns.set(style='whitegrid')
+  plt.figure(figsize=(8, 4))
+  sns.barplot(x=['A', 'B', 'C'], y=[10, 20, 15], palette='pastel')
+  plt.title('Bar Plot with Seaborn')
+  plt.xlabel('Categories')
+  plt.ylabel('Values')
+  plt.show()
+  `
+  },
+  {
+    id: 'handling_csv_and_excel_files',
+    label: 'Handling CSV & Excel Files',
+    content: `
+  # Handling CSV and Excel Files in Python
+  
+  import pandas as pd
+  
+  # Reading CSV file
+  csv_data = pd.read_csv('data.csv')
+  print("CSV Data:")
+  print(csv_data.head())
+  
+  # Writing CSV file
+  csv_data.to_csv('output.csv', index=False)
+  print("CSV Data written to output.csv")
+  
+  # Reading Excel file
+  excel_data = pd.read_excel('data.xlsx', sheet_name='Sheet1')
+  print("Excel Data:")
+  print(excel_data.head())
+  
+  # Writing Excel file
+  excel_data.to_excel('output.xlsx', sheet_name='Sheet1', index=False)
+  print("Excel Data written to output.xlsx")
+  `
+  }
+  
+    
 ];
