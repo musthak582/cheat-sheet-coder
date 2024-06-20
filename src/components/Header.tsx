@@ -19,7 +19,7 @@ const Header = () => {
         <nav className="w-full flex items-center justify-between">
           <Link href={'/'} className="flex items-center">
             <Image
-              src={'/assets/cheat-sheet-coder-bg-dark-logo.png'}
+              src={'/cheat-sheet-coder-bg-dark-logo.png'}
               width={60}
               height={60}
               alt='cheat-sheet-coder-logo'
