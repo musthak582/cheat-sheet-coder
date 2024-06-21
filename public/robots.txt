@@ -1,5 +1,9 @@
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://cheatsheetcoder.vercel.app
 
 # Sitemaps
 Sitemap: https://cheatsheetcoder.vercel.app/sitemap.xml

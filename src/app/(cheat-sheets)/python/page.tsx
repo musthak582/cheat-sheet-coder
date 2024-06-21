@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import JavaScriptCheatSheet from './PythonCheatSheet'; // Adjust the path if necessary
+import PythonCheatSheet from './PythonCheatSheet'; // Adjust the path if necessary
 
 // Define metadata for the page
 export const metadata: Metadata = {
@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 };
 
 // Export default component for this page
-export default function JavaScriptCheatSheetPage() {
-  return <JavaScriptCheatSheet />;
+export default function PythonCheatSheetPage() {
+  return <PythonCheatSheet />;
 }

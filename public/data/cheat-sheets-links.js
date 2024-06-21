@@ -1,6 +1,7 @@
 import { SiCss3,SiJavascript,SiTypescript,SiPython } from "react-icons/si";
 import { ImHtmlFive } from "react-icons/im";
 import { FaReact } from "react-icons/fa6";
+import { FaJava } from "react-icons/fa";
 export const cheatSheetsLinks = [
   {
     path: '/html',
@@ -31,5 +32,10 @@ export const cheatSheetsLinks = [
     path: '/python',
     label: 'Python',
     icon : <SiPython />,
+  },
+  {
+    path: '/java',
+    label: 'Java',
+    icon : <FaJava />,
   },
 ];
