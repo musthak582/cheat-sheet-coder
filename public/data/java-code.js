@@ -284,7 +284,7 @@ export const javaCodeBlocks = [
           public static void main(String[] args) {
               // Single-dimensional array
               int[] numbers = {1, 2, 3, 4, 5};
-              
+
               // Multi-dimensional array
               int[][] matrix = {
                   {1, 2, 3},
@@ -722,6 +722,50 @@ export const javaCodeBlocks = [
           int number = 5;
           int result = example.factorial(number);
           System.out.println("Factorial of " + number + " is " + result);  // Output: Factorial of 5 is 120
+      }
+  }
+  `
+  },
+  {
+    id: 'typecasting',
+    label: 'Typecasting',
+    content: `
+  // Typecasting in Java
+  
+  public class TypecastingExample {
+      public static void main(String[] args) {
+          // Widening (Implicit) Typecasting
+          int num = 100;
+          long longNum = num;  // Automatically converts int to long
+          double doubleNum = longNum;  // Automatically converts long to double
+          
+          System.out.println("Widening Typecasting:");
+          System.out.println("int value: " + num);  // Output: int value: 100
+          System.out.println("long value: " + longNum);  // Output: long value: 100
+          System.out.println("double value: " + doubleNum);  // Output: double value: 100.0
+  
+          // Narrowing (Explicit) Typecasting
+          double originalDouble = 9.78;
+          int narrowedInt = (int) originalDouble;  // Manually cast double to int (truncates decimal part)
+          
+          System.out.println("Narrowing Typecasting:");
+          System.out.println("Original double value: " + originalDouble);  // Output: Original double value: 9.78
+          System.out.println("Narrowed int value: " + narrowedInt);  // Output: Narrowed int value: 9
+  
+          // Typecasting between incompatible types
+          char letter = 'A';
+          int asciiValue = letter;  // char to int conversion based on ASCII value
+          
+          System.out.println("Incompatible Typecasting:");
+          System.out.println("char value: " + letter);  // Output: char value: A
+          System.out.println("ASCII int value: " + asciiValue);  // Output: ASCII int value: 65
+  
+          // Casting objects (class typecasting)
+          Object obj = "Hello, World!";
+          String str = (String) obj;  // Explicit cast from Object to String
+          
+          System.out.println("Class Typecasting:");
+          System.out.println("Object to String: " + str);  // Output: Object to String: Hello, World!
       }
   }
   `
@@ -1215,7 +1259,7 @@ export const javaCodeBlocks = [
   },
   {
     id: 'throw_throws',
-    label: 'throw and throws Keywords',
+    label: 'throw & throws Keywords',
     content: `
       // Using throw and throws in Java
   
@@ -1282,6 +1326,81 @@ export const javaCodeBlocks = [
       // - Extending Exception: Custom exceptions are created by extending the Exception class or any of its subclasses.
       // - Throwing Custom Exceptions: Custom exceptions can be thrown using the throw keyword and must be declared using throws in the method signature.
     `
+  },
+  {
+    id: 'multithreading',
+    label: 'Multithreading',
+    content: `
+  // Multithreading in Java
+  
+  // Define a class that extends Thread
+  class MyThread extends Thread {
+      @Override
+      public void run() {
+          for (int i = 1; i <= 5; i++) {
+              System.out.println(Thread.currentThread().getName() + " - Count: " + i);
+              try {
+                  Thread.sleep(1000);  // Pauses execution for 1 second
+              } catch (InterruptedException e) {
+                  System.out.println(e);
+              }
+          }
+      }
+  }
+  
+  // Define a class that implements Runnable
+  class MyRunnable implements Runnable {
+      @Override
+      public void run() {
+          for (int i = 1; i <= 5; i++) {
+              System.out.println(Thread.currentThread().getName() + " - Count: " + i);
+              try {
+                  Thread.sleep(1000);  // Pauses execution for 1 second
+              } catch (InterruptedException e) {
+                  System.out.println(e);
+              }
+          }
+      }
+  }
+  
+  public class MultithreadingExample {
+      public static void main(String[] args) {
+          // Creating threads by extending Thread class
+          MyThread thread1 = new MyThread();
+          MyThread thread2 = new MyThread();
+          
+          thread1.setName("Thread-1");
+          thread2.setName("Thread-2");
+          
+          thread1.start();  // Starts the execution of thread1
+          thread2.start();  // Starts the execution of thread2
+          
+          // Creating threads by implementing Runnable interface
+          Thread thread3 = new Thread(new MyRunnable());
+          Thread thread4 = new Thread(new MyRunnable());
+          
+          thread3.setName("Runnable-1");
+          thread4.setName("Runnable-2");
+          
+          thread3.start();  // Starts the execution of thread3
+          thread4.start();  // Starts the execution of thread4
+      }
+  }
+  
+  /*
+   Expected Output:
+   Thread-1 - Count: 1
+   Thread-2 - Count: 1
+   Runnable-1 - Count: 1
+   Runnable-2 - Count: 1
+   Thread-1 - Count: 2
+   Thread-2 - Count: 2
+   Runnable-1 - Count: 2
+   Runnable-2 - Count: 2
+   ...
+   (Output will interleave due to concurrent execution)
+  */
+  `
   },
   {
     id: 'list_interface',
@@ -1470,15 +1589,62 @@ export const javaCodeBlocks = [
           }
       }
     `
+  },
+  {
+    id: 'generics',
+    label: 'Generics',
+    content: `
+  // Generics in Java
+  
+  // Generic class example
+  class Box<T> {
+      private T content;
+  
+      public void setContent(T content) {
+          this.content = content;
+      }
+  
+      public T getContent() {
+          return content;
+      }
+  
+      public void displayContent() {
+          System.out.println("Content: " + content);
+      }
   }
   
+  // Generic method example
+  public class GenericsExample {
+      // Generic method to print an array
+      public static <T> void printArray(T[] array) {
+          for (T element : array) {
+              System.out.print(element + " ");
+          }
+          System.out.println();
+      }
   
+      public static void main(String[] args) {
+          // Using generic class with different types
+          Box<Integer> integerBox = new Box<>();
+          integerBox.setContent(123);
+          integerBox.displayContent(); // Output: Content: 123
   
+          Box<String> stringBox = new Box<>();
+          stringBox.setContent("Hello, Generics!");
+          stringBox.displayContent(); // Output: Content: Hello, Generics!
   
+          // Using generic method
+          Integer[] intArray = {1, 2, 3, 4, 5};
+          String[] strArray = {"A", "B", "C", "D", "E"};
   
+          System.out.print("Integer Array: ");
+          printArray(intArray); // Output: 1 2 3 4 5
   
-  
-  
-
-  
+          System.out.print("String Array: ");
+          printArray(strArray); // Output: A B C D E
+      }
+  }
+  `
+  }
+ 
 ];

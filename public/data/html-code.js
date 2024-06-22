@@ -103,7 +103,8 @@ It should always be the very first line in an HTML document. -->`
     id: 'paragraphs-example',
     label: 'Paragraphs',
     content:
-    `<!-- Paragraphs are defined using the <p> tag. They create a block of text with space before and after. -->
+    `<!-- Paragraphs are defined using the <p> tag. 
+    They create a block of text with space before and after. -->
 
 <p>This is the first paragraph. It introduces the topic.</p>
 <p>This is the second paragraph. It provides additional details.</p>
