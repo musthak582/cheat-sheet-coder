@@ -40,7 +40,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ closeSearchBox }) => {
               className="flex items-center gap-3 border border-gray-200 p-3 rounded-lg hover:bg-gray-100 transition duration-200"
               onClick={closeSearchBox} // Close the search box on link click
             >
-              <span className="text-2xl">{item.icon}</span>
+              <div className="h-[30px] w-[30px]">{item.icon}</div>
               <span className="text-lg text-gray-700">{item.label}</span>
             </Link>
           ))}
