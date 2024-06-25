@@ -283,7 +283,782 @@ export const cCodeBlocks = [
       return 0;
   }
   `
+  },
+  {
+    id: 'conditional_statements_c',
+    label: 'Conditional Statements',
+    content: `
+  // Conditional Statements in C
+  
+  #include <stdio.h>
+  
+  int main() {
+      int num = 25;
+  
+      // Using if statement
+      if (num > 20) {
+          printf("Number is greater than 20\\n"); // Output: Number is greater than 20
+      }
+  
+      // Using if-else statement
+      if (num % 2 == 0) {
+          printf("Number is even\\n");
+      } else {
+          printf("Number is odd\\n"); // Output: Number is odd
+      }
+  
+      // Using if-else if-else ladder
+      if (num < 10) {
+          printf("Number is less than 10\\n");
+      } else if (num <= 20) {
+          printf("Number is between 10 and 20\\n");
+      } else {
+          printf("Number is greater than 20\\n"); // Output: Number is greater than 20
+      }
+  
+      // Using switch statement
+      char grade = 'B';
+  
+      switch (grade) {
+          case 'A':
+              printf("Excellent!\\n");
+              break;
+          case 'B':
+              printf("Good Job!\\n"); // Output: Good Job!
+              break;
+          case 'C':
+              printf("Well Done\\n");
+              break;
+          case 'D':
+              printf("You passed\\n");
+              break;
+          case 'F':
+              printf("Better luck next time\\n");
+              break;
+          default:
+              printf("Invalid grade\\n");
+      }
+  
+      return 0;
   }
+  `
+  },
+  {
+    id: 'loops_c',
+    label: 'Loops',
+    content: `
+  // Loops in C
+  
+  #include <stdio.h>
+  
+  int main() {
+      // Using for loop
+      printf("For Loop:\\n");
+      for (int i = 0; i < 5; i++) {
+          printf("i = %d\\n", i); // Output: i = 0, i = 1, i = 2, i = 3, i = 4
+      }
+  
+      // Using while loop
+      printf("\\nWhile Loop:\\n");
+      int j = 0;
+      while (j < 5) {
+          printf("j = %d\\n", j); // Output: j = 0, j = 1, j = 2, j = 3, j = 4
+          j++;
+      }
+  
+      // Using do-while loop
+      printf("\\nDo-While Loop:\\n");
+      int k = 0;
+      do {
+          printf("k = %d\\n", k); // Output: k = 0, k = 1, k = 2, k = 3, k = 4
+          k++;
+      } while (k < 5);
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'loop_control_c',
+    label: 'Loop Control',
+    content: `
+  // Loop Control in C
+  
+  #include <stdio.h>
+  
+  int main() {
+      // Using break to exit a loop prematurely
+      printf("Using break in a loop:\\n");
+      for (int i = 0; i < 10; i++) {
+          if (i == 5) {
+              break;  // Exit the loop when i equals 5
+          }
+          printf("i = %d\\n", i); // Output: i = 0, i = 1, i = 2, i = 3, i = 4
+      }
+  
+      // Using continue to skip an iteration
+      printf("\\nUsing continue in a loop:\\n");
+      for (int j = 0; j < 10; j++) {
+          if (j % 2 == 0) {
+              continue;  // Skip the rest of the loop when j is even
+          }
+          printf("j = %d\\n", j); // Output: j = 1, j = 3, j = 5, j = 7, j = 9
+      }
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'functions_c',
+    label: 'Functions',
+    content: `
+  // Functions in C
+  
+  #include <stdio.h>
+  
+  // Function prototype (declaration)
+  int add(int a, int b);
+  void printMessage(void);
+  int factorial(int n);
+  
+  int main() {
+      // Calling a function
+      int result = add(5, 3);
+      printf("Sum: %d\\n", result); // Output: Sum: 8
+  
+      // Calling a function that takes no parameters and returns no value
+      printMessage(); // Output: Hello, C Functions!
+  
+      // Calling a recursive function
+      int fact = factorial(5);
+      printf("Factorial of 5: %d\\n", fact); // Output: Factorial of 5: 120
+  
+      return 0;
+  }
+  
+  // Function definition
+  int add(int a, int b) {
+      return a + b;
+  }
+  
+  // Function with no parameters and no return value
+  void printMessage() {
+      printf("Hello, C Functions!\\n");
+  }
+  
+  // Recursive function definition to calculate factorial
+  int factorial(int n) {
+      if (n == 0) {
+          return 1;  // Base case: factorial of 0 is 1
+      } else {
+          return n * factorial(n - 1);  // Recursive case
+      }
+  }
+  `
+  },
+  {
+    id: 'arrays_and_strings',
+    label: 'Arrays & Strings',
+    content: `
+  // Arrays and Strings in C
+  
+  #include <stdio.h>
+  #include <string.h> // Include string handling functions
+  
+  // Function to print an array
+  void printArray(int arr[], int size) {
+      for (int i = 0; i < size; i++) {
+          printf("%d ", arr[i]);
+      }
+      printf("\\n");
+  }
+  
+  // Function to print a 2D array (matrix)
+  void print2DArray(int arr[][3], int rows) {
+      for (int i = 0; i < rows; i++) {
+          for (int j = 0; j < 3; j++) {
+              printf("%d ", arr[i][j]);
+          }
+          printf("\\n");
+      }
+  }
+  
+  // Function to print a string
+  void printString(const char str[]) {
+      printf("%s\\n", str);
+  }
+  
+  int main() {
+      // Declaring and initializing arrays
+      int numbers[5] = {1, 2, 3, 4, 5}; // 1D array
+      int matrix[2][3] = {               // 2D array
+          {1, 2, 3},
+          {4, 5, 6}
+      };
+  
+      // Accessing and modifying array elements
+      printf("Original array: ");
+      printArray(numbers, 5); // Output: 1 2 3 4 5
+  
+      numbers[2] = 10; // Modify element at index 2
+      printf("Modified array: ");
+      printArray(numbers, 5); // Output: 1 2 10 4 5
+  
+      // Printing a multi-dimensional array
+      printf("2D Array (Matrix):\\n");
+      print2DArray(matrix, 2); 
+      // Output:
+      // 1 2 3
+      // 4 5 6
+  
+      // String handling
+      char greeting[20] = "Hello, "; // String initialization
+      char name[10] = "World!";
+      char fullGreeting[30];
+  
+      // Concatenating strings
+      strcpy(fullGreeting, greeting); // Copy greeting to fullGreeting
+      strcat(fullGreeting, name);     // Concatenate name to fullGreeting
+      printf("Full Greeting: ");
+      printString(fullGreeting); // Output: Hello, World!
+  
+      // String length
+      printf("Length of the greeting: %zu\\n", strlen(fullGreeting)); // Output: 13
+  
+      // Passing arrays and strings to functions
+      printf("Pass array to function: ");
+      printArray(numbers, 5); // Output: 1 2 10 4 5
+  
+      printf("Pass string to function: ");
+      printString(fullGreeting); // Output: Hello, World!
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'memory_management',
+    label: 'Memory Management',
+    content: `
+  // Memory Management in C
+  
+  #include <stdio.h>
+  #include <stdlib.h> // Required for malloc, calloc, realloc, and free
+  
+  int main() {
+      // Dynamic Memory Allocation using malloc
+      int *array = (int*)malloc(5 * sizeof(int)); // Allocate memory for 5 integers
+      if (array == NULL) {
+          printf("Memory allocation failed\\n");
+          return 1; // Exit the program if allocation fails
+      }
+  
+      // Initializing allocated memory and displaying it
+      for (int i = 0; i < 5; i++) {
+          array[i] = i * 2; // Initialize with some values
+          printf("Array[%d] = %d\\n", i, array[i]); // Output: 0, 2, 4, 6, 8
+      }
+  
+      // Dynamic Memory Allocation using calloc
+      int *c_array = (int*)calloc(5, sizeof(int)); // Allocate and initialize memory for 5 integers
+      if (c_array == NULL) {
+          printf("Memory allocation failed\\n");
+          free(array); // Free previously allocated memory
+          return 1; // Exit the program if allocation fails
+      }
+  
+      // Displaying the zero-initialized memory
+      for (int i = 0; i < 5; i++) {
+          printf("C_Array[%d] = %d\\n", i, c_array[i]); // Output: 0, 0, 0, 0, 0
+      }
+  
+      // Reallocating Memory using realloc
+      array = (int*)realloc(array, 10 * sizeof(int)); // Resize the array to hold 10 integers
+      if (array == NULL) {
+          printf("Memory reallocation failed\\n");
+          free(c_array); // Free previously allocated memory
+          return 1; // Exit the program if reallocation fails
+      }
+  
+      // Initializing the new elements
+      for (int i = 5; i < 10; i++) {
+          array[i] = i * 2;
+          printf("Reallocated Array[%d] = %d\\n", i, array[i]); // Output: 10, 12, 14, 16, 18
+      }
+  
+      // Freeing Allocated Memory
+      free(array); // Free the memory allocated for the array
+      free(c_array); // Free the memory allocated by calloc
+  
+      // Demonstrating potential memory leak
+      int *leaky_array = (int*)malloc(100 * sizeof(int));
+      // Forgetting to call free(leaky_array); causes a memory leak
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'structures_and_unions',
+    label: 'Structures & Unions',
+    content: `
+  // Structures and Unions in C
+  
+  #include <stdio.h>
+  #include <string.h> // Required for string manipulation functions
+  
+  // Define a structure to represent a person
+  struct Person {
+      char name[50];
+      int age;
+      float height;
+  };
+  
+  // Define a nested structure for addresses
+  struct Address {
+      char street[50];
+      char city[50];
+      int pincode;
+  };
+  
+  // Define a structure with nested structures
+  struct Employee {
+      char empId[10];
+      struct Person info;
+      struct Address addr;
+  };
+  
+  // Declare and initialize an array of structures
+  struct Employee employees[3] = {
+      {"E001", {"John Doe", 30, 6.0}, {"123 Street", "New York", 10001}},
+      {"E002", {"Jane Smith", 25, 5.5}, {"456 Avenue", "Los Angeles", 90001}},
+      {"E003", {"Tom Allen", 35, 5.8}, {"789 Road", "Chicago", 60001}}
+  };
+  
+  // Define a union for various data types
+  union Data {
+      int i;
+      float f;
+      char str[20];
+  };
+  
+  // Define a structure with a union
+  struct MixedData {
+      int dataType; // 0 for int, 1 for float, 2 for string
+      union Data data;
+  };
+  
+  int main() {
+      // Accessing and displaying values from the array of structures
+      for (int i = 0; i < 3; i++) {
+          printf("Employee ID: %s\\n", employees[i].empId);
+          printf("Name: %s\\n", employees[i].info.name);
+          printf("Age: %d\\n", employees[i].info.age);
+          printf("Height: %.1f\\n", employees[i].info.height);
+          printf("Address: %s, %s - %d\\n\\n", employees[i].addr.street, employees[i].addr.city, employees[i].addr.pincode);
+      }
+  
+      // Example of using pointers with structures
+      struct Employee *empPtr = &employees[0];
+      printf("First employee ID using pointer: %s\\n", empPtr->empId);
+  
+      // Define and use a union
+      union Data data;
+      data.i = 10;
+      printf("Union Data: %d\\n", data.i);
+      data.f = 25.5;
+      printf("Union Data: %.1f\\n", data.f);
+      strcpy(data.str, "Hello");
+      printf("Union Data: %s\\n", data.str);
+  
+      // Define and use a structure with a union
+      struct MixedData mixedData;
+      mixedData.dataType = 0;
+      mixedData.data.i = 100;
+      printf("Mixed Data: %d\\n", mixedData.data.i);
+      mixedData.dataType = 1;
+      mixedData.data.f = 123.45;
+      printf("Mixed Data: %.2f\\n", mixedData.data.f);
+      mixedData.dataType = 2;
+      strcpy(mixedData.data.str, "Greetings");
+      printf("Mixed Data: %s\\n", mixedData.data.str);
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'enumerations',
+    label: 'Enumerations',
+    content: `
+  // Enumerations in C
+  
+  #include <stdio.h>
+  
+  // Define an enumeration for days of the week
+  enum Days {
+      Sunday,
+      Monday,
+      Tuesday,
+      Wednesday,
+      Thursday,
+      Friday,
+      Saturday
+  };
+  
+  int main() {
+      // Declare variables of type enum Days
+      enum Days today, tomorrow;
+  
+      today = Wednesday;
+      tomorrow = Thursday;
+  
+      // Print the values of enum variables
+      printf("Today is: ");
+      switch (today) {
+          case Sunday:
+              printf("Sunday\\n");
+              break;
+          case Monday:
+              printf("Monday\\n");
+              break;
+          case Tuesday:
+              printf("Tuesday\\n");
+              break;
+          case Wednesday:
+              printf("Wednesday\\n");
+              break;
+          case Thursday:
+              printf("Thursday\\n");
+              break;
+          case Friday:
+              printf("Friday\\n");
+              break;
+          case Saturday:
+              printf("Saturday\\n");
+              break;
+          default:
+              printf("Unknown\\n");
+              break;
+      }
+  
+      printf("Tomorrow is: ");
+      switch (tomorrow) {
+          case Sunday:
+              printf("Sunday\\n");
+              break;
+          case Monday:
+              printf("Monday\\n");
+              break;
+          case Tuesday:
+              printf("Tuesday\\n");
+              break;
+          case Wednesday:
+              printf("Wednesday\\n");
+              break;
+          case Thursday:
+              printf("Thursday\\n");
+              break;
+          case Friday:
+              printf("Friday\\n");
+              break;
+          case Saturday:
+              printf("Saturday\\n");
+              break;
+          default:
+              printf("Unknown\\n");
+              break;
+      }
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'file_handling',
+    label: 'File Handling',
+    content: `
+  // File Handling in C
+  
+  #include <stdio.h>
+  #include <stdlib.h>
+  
+  int main() {
+      // File pointer and file handling variables
+      FILE *fp;
+      char filename[] = "example.txt";
+      char buffer[100];
+  
+      // Opening a file for writing
+      fp = fopen(filename, "w");
+      if (fp == NULL) {
+          perror("Error opening file");
+          return EXIT_FAILURE;
+      }
+  
+      // Writing to a file using fprintf
+      fprintf(fp, "This is a text file.\\n");
+      fprintf(fp, "File handling in C is fun!\\n");
+  
+      // Closing the file
+      fclose(fp);
+  
+      // Opening a file for reading
+      fp = fopen(filename, "r");
+      if (fp == NULL) {
+          perror("Error opening file");
+          return EXIT_FAILURE;
+      }
+  
+      // Reading from a file using fgets
+      printf("Contents of %s:\\n", filename);
+      while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+          printf("%s", buffer);
+      }
+  
+      // Closing the file
+      fclose(fp);
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'preprocessor_directives',
+    label: 'Preprocessor Directives',
+    content: `
+  // Preprocessor Directives in C
+  
+  #include <stdio.h>
+  #include <stdlib.h>
+  
+  // Macro definition
+  #define PI 3.14159
+  #define SQUARE(x) ((x) * (x))
+  
+  // Conditional compilation
+  #ifdef DEBUG
+  #define DEBUG_MESSAGE "Debugging mode is enabled."
+  #else
+  #define DEBUG_MESSAGE "Debugging mode is disabled."
+  #endif
+  
+  int main() {
+      int radius = 5;
+      double area;
+  
+      // Using predefined macro __FILE__ and __LINE__
+      printf("File: %s\\n", __FILE__);
+      printf("Line: %d\\n", __LINE__);
+  
+      // Using macros
+      area = PI * SQUARE(radius);
+      printf("Area of a circle with radius %d: %.2f\\n", radius, area);
+  
+      // Conditional compilation example
+  #ifdef DEBUG
+      printf("Debugging information: %s\\n", DEBUG_MESSAGE);
+  #endif
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'bitwise_operations',
+    label: 'Bitwise Operations',
+    content: `
+  // Bitwise Operations in C
+  
+  #include <stdio.h>
+  
+  // Function to print binary representation of a number
+  void printBinary(int num) {
+      for (int i = sizeof(int) * 8 - 1; i >= 0; i--) {
+          printf("%d", (num >> i) & 1);
+          if (i % 4 == 0) printf(" ");  // Adding space for readability
+      }
+      printf("\\n");
+  }
+  
+  int main() {
+      int a = 29; // Binary: 0001 1101
+      int b = 15; // Binary: 0000 1111
+  
+      // Bitwise AND
+      int andResult = a & b; // 0000 1101
+      printf("a & b = %d (Binary: ", andResult);
+      printBinary(andResult);
+  
+      // Bitwise OR
+      int orResult = a | b;  // 0001 1111
+      printf("a | b = %d (Binary: ", orResult);
+      printBinary(orResult);
+  
+      // Bitwise XOR
+      int xorResult = a ^ b; // 0001 0010
+      printf("a ^ b = %d (Binary: ", xorResult);
+      printBinary(xorResult);
+  
+      // Bitwise NOT
+      int notResult = ~a;    // 1110 0010 (two's complement representation)
+      printf("~a = %d (Binary: ", notResult);
+      printBinary(notResult);
+  
+      // Bitwise left shift
+      int leftShiftResult = a << 2; // 0111 0100
+      printf("a << 2 = %d (Binary: ", leftShiftResult);
+      printBinary(leftShiftResult);
+  
+      // Bitwise right shift
+      int rightShiftResult = a >> 2; // 0000 0111
+      printf("a >> 2 = %d (Binary: ", rightShiftResult);
+      printBinary(rightShiftResult);
+  
+      // Bit Masks and Bit Manipulation
+      int mask = 0x4; // Binary: 0000 0100 (mask for the 3rd bit)
+      printf("Mask (0x4): ");
+      printBinary(mask);
+  
+      // Setting a bit (set the 3rd bit of 'a')
+      int setBit = a | mask; // 0001 1101 | 0000 0100 = 0001 1101 (no change since the 3rd bit is already 1)
+      printf("Setting the 3rd bit of a: ");
+      printBinary(setBit);
+  
+      // Clearing a bit (clear the 4th bit of 'a')
+      int clearBit = a & ~mask; // 0001 1101 & 1111 1011 = 0001 1001
+      printf("Clearing the 3rd bit of a: ");
+      printBinary(clearBit);
+  
+      // Toggling a bit (toggle the 3rd bit of 'a')
+      int toggleBit = a ^ mask; // 0001 1101 ^ 0000 0100 = 0001 1001
+      printf("Toggling the 3rd bit of a: ");
+      printBinary(toggleBit);
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'error_handling',
+    label: 'Error Handling',
+    content: `
+  // Error Handling in C
+  
+  #include <stdio.h>
+  #include <errno.h>
+  #include <string.h>
+  
+  // Function that demonstrates error handling with error codes
+  int divide(int dividend, int divisor) {
+      if (divisor == 0) {
+          // Return an error code for division by zero
+          return -1;
+      }
+      return dividend / divisor;
+  }
+  
+  int main() {
+      // Example 1: Using Error Codes and Return Values
+      int result = divide(10, 0);
+      if (result == -1) {
+          printf("Error: Division by zero is not allowed.\\n");
+      } else {
+          printf("Result: %d\\n", result);
+      }
+      
+      // Example 2: Using errno and Error Macros
+      FILE *file = fopen("nonexistent_file.txt", "r");
+      if (file == NULL) {
+          // Set errno and print the corresponding error message
+          perror("Error opening file"); // Output: Error opening file: No such file or directory
+          // Alternatively, use strerror to get the error description
+          printf("Error description: %s\\n", strerror(errno)); // Output: Error description: No such file or directory
+      }
+  
+      // Example 3: Custom Error Handling with errno
+      errno = 0; // Reset errno before calling a function that might set it
+      int number = 42;
+      char buffer[5];
+      snprintf(buffer, sizeof(buffer), "%d", number); // Convert number to string
+      if (errno != 0) {
+          // Check if an error occurred during snprintf
+          printf("snprintf error: %s\\n", strerror(errno));
+      } else {
+          printf("snprintf succeeded: %s\\n", buffer); // Output: snprintf succeeded: 42
+      }
+  
+      return 0;
+  }
+  `
+  },
+  {
+    id: 'standard_library_functions',
+    label: 'Standard Library Functions',
+    content: `
+  // Standard Library Functions in C
+  
+  #include <stdio.h>  // For standard I/O functions
+  #include <string.h> // For string handling functions
+  #include <stdlib.h> // For memory management functions
+  #include <math.h>   // For mathematical functions
+  
+  int main() {
+      // Standard I/O Library Functions
+      printf("Standard I/O Functions:\\n");
+      FILE *file = fopen("example.txt", "w"); // Open file for writing
+      if (file != NULL) {
+          fprintf(file, "Hello, World!\\n");  // Write to file
+          fclose(file);                      // Close file
+      }
+      char name[50];
+      printf("Enter your name: ");
+      scanf("%49s", name);                   // Read user input
+      printf("Hello, %s!\\n", name);
+  
+      // String Handling Functions
+      printf("\\nString Handling Functions:\\n");
+      char str1[20] = "Hello";
+      char str2[20] = "World";
+      strcat(str1, " ");                     // Concatenate space
+      strcat(str1, str2);                    // Concatenate str2 to str1
+      printf("Concatenated string: %s\\n", str1); // Output: Hello World
+      printf("Length of string: %lu\\n", strlen(str1)); // Output: 11
+  
+      char str3[20];
+      strcpy(str3, str1);                    // Copy str1 to str3
+      printf("Copied string: %s\\n", str3);  // Output: Hello World
+  
+      // Memory Management Functions
+      printf("\\nMemory Management Functions:\\n");
+      int *numbers = (int *)malloc(5 * sizeof(int)); // Allocate memory for 5 integers
+      if (numbers != NULL) {
+          for (int i = 0; i < 5; i++) {
+              numbers[i] = i * i;                   // Initialize array
+          }
+          for (int i = 0; i < 5; i++) {
+              printf("Number[%d] = %d\\n", i, numbers[i]);
+          }
+          free(numbers); // Free allocated memory
+      } else {
+          printf("Memory allocation failed\\n");
+      }
+  
+      // Mathematical Functions
+      printf("\\nMathematical Functions:\\n");
+      double num = 25.0;
+      printf("Square root of %.2f is %.2f\\n", num, sqrt(num));  // Output: Square root of 25.00 is 5.00
+      printf("Cosine of %.2f is %.2f\\n", num, cos(num));        // Output: Cosine of 25.00 is 0.96
+      printf("Sine of %.2f is %.2f\\n", num, sin(num));          // Output: Sine of 25.00 is -0.42
+  
+      return 0;
+  }
+  `
+  }
+  
+  
+  
   
   
   
