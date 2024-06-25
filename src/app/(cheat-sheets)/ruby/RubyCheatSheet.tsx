@@ -1,9 +1,11 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/vs2015.css'; // Import the Highlight.js theme
-import { rubyCodeBlocks } from '../../../../public/data/ruby-code'
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-okaidia.css'; // Import PrismJS theme
+import 'prismjs/components/prism-ruby'; // Import the Ruby language support
+import { rubyCodeBlocks } from '../../../../public/data/ruby-code';
 import { FaBars, FaTimes } from 'react-icons/fa';
+
 const RubyCheatSheet = () => {
   // State to track the currently selected section
   const [selectedSection, setSelectedSection] = useState(rubyCodeBlocks[0].id);
@@ -14,7 +16,7 @@ const RubyCheatSheet = () => {
     // Highlight the code block whenever the selected section changes
     const codeBlocks = document.querySelectorAll<HTMLElement>('pre code');
     codeBlocks.forEach((block) => {
-      hljs.highlightBlock(block);
+      Prism.highlightElement(block); // Use PrismJS to highlight
     });
   }, [selectedSection]);
 
@@ -29,8 +31,10 @@ const RubyCheatSheet = () => {
             isOpen ? <FaTimes /> : <FaBars />
           }
         </button>
-        <h2 className='lg:text-3xl md:text-2xl text-[20px] text-center font-extrabold text-slate-900 '>C Cheat Sheet</h2>
-        <p className='max-w-4xl hidden lg:inline text-[20px] text-slate-700 text-center'>Master C essentials with our free C Cheat Sheet. Perfect for beginners and developers. Get quick references for syntax, pointers, and memory management to write efficient and powerful C programs effortlessly.</p>
+        <h2 className='lg:text-3xl md:text-2xl text-[20px] text-center font-extrabold text-slate-900 '>Ruby Cheat Sheet</h2>
+        <p className='max-w-4xl hidden lg:inline text-[20px] text-slate-700 text-center'>
+          Dive into Ruby with our free Ruby Cheat Sheet. Perfect for beginners and developers. Get quick references for syntax, classes, and built-in methods to write elegant and productive Ruby code effortlessly.
+        </p>
       </div>
       <div className='relative w-full flex lg:flex-row flex-col bg-white'>
         {/* side bar */}
@@ -39,11 +43,11 @@ const RubyCheatSheet = () => {
             {
               rubyCodeBlocks.map((section) => (
                 <button
-                  className={`block w-full border-l-2   text-left px-4 py-1 ${selectedSection === section.id ? ' font-semibold text-[#171717] border-[#171717] ' : ' text-slate-700 border-slate-300 hover:border-l-[#171717]'
+                  className={`block w-full border-l-2 text-left px-4 py-1 ${selectedSection === section.id ? ' font-semibold text-[#171717] border-[#171717] ' : ' text-slate-700 border-slate-300 hover:border-l-[#171717]'
                     }`}
                   onClick={() => {
-                  setSelectedSection(section.id)
-                  setOpen(!isOpen)
+                    setSelectedSection(section.id)
+                    setOpen(!isOpen)
                   }}
                   key={section.id}
                 >
@@ -59,7 +63,7 @@ const RubyCheatSheet = () => {
             selectedSection === section.id && (
               <div key={section.id} className='h-full bg-[#1E1E1E] '>
                 <pre>
-                  <code className="language-c text-[18px]">
+                  <code className="language-ruby text-[18px]">
                     {section.content}
                   </code>
                 </pre>
