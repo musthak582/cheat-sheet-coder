@@ -3,8 +3,8 @@ import CppCheatSheet from './CppCheatSheet'; // Adjust the path if necessary
 
 // Define metadata for the page
 export const metadata: Metadata = {
-  title: 'C++ Cheat Sheet',
-  description: 'Master C++ essentials with our free C++ Cheat Sheet. Perfect for beginners and developers. Get quick references for syntax, data structures, and object-oriented programming concepts to write efficient and powerful C++ code effortlessly.',
+  title: 'C++ Cheat Sheet: Ultimate Guide with Examples',
+  description: 'Access our free C++ Cheat Sheet to master syntax, classes, and algorithms. This comprehensive guide includes practical examples for efficient C++ programming. Perfect for quick reference!',
 };
 
 // Export default component for this page

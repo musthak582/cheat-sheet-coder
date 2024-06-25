@@ -3,8 +3,8 @@ import PythonCheatSheet from './PythonCheatSheet'; // Adjust the path if necessa
 
 // Define metadata for the page
 export const metadata: Metadata = {
-  title: 'Python Cheat Sheet',
-  description: 'Discover Python essentials with our free Python Cheat Sheet. Perfect for beginners and developers. Get quick references for syntax, data structures, and common libraries to write efficient and powerful Python code effortlessly.',
+  title: 'Python Cheat Sheet: Ultimate Guide with Examples',
+  description: 'Access our free Python Cheat Sheet to master syntax, functions, and libraries. This comprehensive guide includes practical examples for efficient Python programming. Perfect for quick reference!',
 };
 
 // Export default component for this page

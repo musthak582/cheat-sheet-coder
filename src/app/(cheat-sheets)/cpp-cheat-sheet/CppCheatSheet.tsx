@@ -30,7 +30,7 @@ const CppCheatSheet = () => {
           }
         </button>
         <h2 className='lg:text-3xl md:text-2xl text-[20px] text-center font-extrabold text-slate-900 '>C++ Cheat Sheet</h2>
-        <p className='max-w-4xl hidden lg:inline text-[20px] text-slate-700 text-center'>Master C++ essentials with our free C++ Cheat Sheet. Perfect for beginners and developers. Get quick references for syntax, data structures, and object-oriented programming concepts to write efficient and powerful C++ code effortlessly.</p>
+        <p className='max-w-4xl hidden lg:inline text-[20px] text-slate-700 text-center'>Access our free C++ Cheat Sheet to master syntax, classes, and algorithms. This comprehensive guide includes practical examples for efficient C++ programming. Perfect for quick reference!</p>
       </div>
       <div className='relative w-full flex lg:flex-row flex-col bg-white'>
         {/* side bar */}

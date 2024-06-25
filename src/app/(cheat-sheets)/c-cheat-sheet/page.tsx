@@ -3,8 +3,8 @@ import CCheatSheet from './CCheatSheet'; // Adjust the path if necessary
 
 // Define metadata for the page
 export const metadata: Metadata = {
-  title: 'C Cheat Sheet',
-  description: 'Master C essentials with our free C Cheat Sheet.Perfect for beginners and developers. Get quick references for syntax, pointers, and memory management to write efficient and powerful C programs effortlessly.',
+  title: 'C Cheat Sheet: Ultimate Guide with Examples',
+  description: 'Access our free C Cheat Sheet to master syntax, functions, and libraries. This comprehensive guide includes practical examples for efficient C programming. Perfect for quick reference!',
 };
 
 // Export default component for this page

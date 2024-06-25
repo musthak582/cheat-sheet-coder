@@ -3,8 +3,8 @@ import RubyCheatSheet from './RubyCheatSheet'; // Adjust the path if necessary
 
 // Define metadata for the page
 export const metadata: Metadata = {
-  title: 'Ruby Cheat Sheet',
-  description: 'Dive into Ruby with our free Ruby Cheat Sheet. Perfect for beginners and developers. Get quick references for syntax, classes, and built-in methods to write elegant and productive Ruby code effortlessly.',
+  title: 'Ruby Cheat Sheet: Ultimate Guide with Examples',
+  description: 'Access our free Ruby Cheat Sheet to master syntax, methods, and gems. This comprehensive guide includes practical examples for efficient Ruby programming. Perfect for quick reference!',
 };
 
 // Export default component for this page

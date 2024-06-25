@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] });
 // Define the metadata using the Metadata API
 export const metadata: Metadata = {
   title: 'Free Programming Cheatsheets for Beginners and Beyond',
-  description: 'Discover a wide range of free programming cheatsheets to help you learn and code faster. Perfect for beginners and experienced developers looking for quick coding references across various languages including Python, JavaScript, Java, and more.',
+  description: 'Discover a wide range of free programming cheatsheets to help you learn and code faster. Perfect for quick coding references across various languages including Python, JavaScript, Java, and more.',
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',

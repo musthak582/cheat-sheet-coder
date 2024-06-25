@@ -3,8 +3,8 @@ import JavaScriptCheatSheet from './JavaScriptCheatSheet'; // Adjust the path if
 
 // Define metadata for the page
 export const metadata: Metadata = {
-  title: 'JavaScript Cheat Sheet',
-  description: 'Master JavaScript essentials with our free JavaScript Cheat Sheet. Perfect for beginners and developers. Get quick references for variables, functions, and DOM manipulation to build interactive web applications effortlessly.',
+  title: 'JavaScript Cheat Sheet: Ultimate Guide with Examples',
+  description: 'Access our free JavaScript Cheat Sheet to master essential functions, methods, and syntax. This guide covers practical examples for building dynamic web applications. Perfect for quick reference!',
 };
 
 // Export default component for this page

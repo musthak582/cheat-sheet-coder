@@ -2,11 +2,11 @@
 import { useEffect, useState } from 'react';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/vs2015.css'; // Import the Highlight.js theme
-import { htmlCodeBlocks } from '../../../../public/data/html-code'
+import { pythonCodeBlocks } from '../../../../public/data/python-code'
 import { FaBars, FaTimes } from 'react-icons/fa';
-const HtmlCheatSheet = () => {
+const JavaScriptCheatSheet = () => {
   // State to track the currently selected section
-  const [selectedSection, setSelectedSection] = useState(htmlCodeBlocks[0].id);
+  const [selectedSection, setSelectedSection] = useState(pythonCodeBlocks[0].id);
   // for toggle sidebar
   const [isOpen, setOpen] = useState(false);
 
@@ -29,17 +29,17 @@ const HtmlCheatSheet = () => {
             isOpen ? <FaTimes /> : <FaBars />
           }
         </button>
-        <h2 className='lg:text-3xl md:text-2xl text-[20px] text-center font-extrabold text-slate-900 '>HTML Cheat Sheet</h2>
-        <p className='max-w-4xl hidden lg:inline text-[20px] text-slate-700 text-center'>Master HTML essentials with our free HTML Cheat Sheet. Perfect for beginners and web developers. Get quick references to build and optimize web pages effortlessly.</p>
+        <h2 className='lg:text-3xl md:text-2xl text-[20px] text-center font-extrabold text-slate-900 '>Python Cheat Sheet</h2>
+        <p className='max-w-4xl hidden lg:inline text-[20px] text-slate-700 text-center'>Access our free Python Cheat Sheet to master syntax, functions, and libraries. This comprehensive guide includes practical examples for efficient Python programming. Perfect for quick reference!</p>
       </div>
       <div className='relative w-full flex lg:flex-row flex-col bg-white'>
         {/* side bar */}
         <div className={`sm:w-[400px] w-full h-[600px] ${isOpen ? 'block' : 'hidden'} lg:flex lg:static absolute top-0 left-0 flex-col overflow-auto bg-white`}>
           <nav className='flex flex-col'>
             {
-              htmlCodeBlocks.map((section) => (
+              pythonCodeBlocks.map((section) => (
                 <button
-                  className={`block w-full border-l-2 text-left px-4 py-1 ${selectedSection === section.id ? ' font-semibold text-[#171717] border-[#171717]' : ' border-slate-300 text-slate-700 hover:border-l-[#171717]'
+                  className={`block w-full border-l-2   text-left px-4 py-1 ${selectedSection === section.id ? ' font-semibold text-[#171717] border-[#171717] ' : ' text-slate-700 border-slate-300 hover:border-l-[#171717]'
                     }`}
                   onClick={() => {
                   setSelectedSection(section.id)
@@ -55,11 +55,11 @@ const HtmlCheatSheet = () => {
         </div>
         {/* code block */}
         <div className="flex w-full h-[600px] flex-col overflow-auto">
-          {htmlCodeBlocks.map((section) => (
+          {pythonCodeBlocks.map((section) => (
             selectedSection === section.id && (
               <div key={section.id} className='h-full bg-[#1E1E1E] '>
                 <pre>
-                  <code className="language-html text-[18px]">
+                  <code className="language-python text-[18px]">
                     {section.content}
                   </code>
                 </pre>
@@ -72,4 +72,4 @@ const HtmlCheatSheet = () => {
   );
 };
 
-export default HtmlCheatSheet;
+export default JavaScriptCheatSheet;
