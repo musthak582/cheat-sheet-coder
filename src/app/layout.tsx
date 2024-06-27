@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 
 // Import the Metadata type from 'next' if needed for detailed typing
 import { Metadata } from 'next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Initialize the Google Font
 const inter = Inter({ subsets: ['latin'] });
@@ -32,8 +33,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         {children}
-        <Analytics />
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

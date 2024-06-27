@@ -1434,7 +1434,7 @@ export const rubyCodeBlocks = [
   
   # Reading the entire content of a file using File.read
   file_content = File.read("example.txt")
-  puts "File content:\n#{file_content}"
+  puts "File content:\\n#{file_content}"
   
   # Reading lines into an array using File.readlines
   lines = File.readlines("example.txt")
@@ -1445,12 +1445,12 @@ export const rubyCodeBlocks = [
   
   # Writing to a file using File.open with 'w' mode (write mode)
   File.open("output.txt", "w") do |file|
-    file.write("This is a new line.\n")
+    file.write("This is a new line.\\n")
     file.puts("This is another line using puts.")
   end
   
   # Writing to a file using File.write (simpler method)
-  File.write("output_simple.txt", "Simple write operation.\n")
+  File.write("output_simple.txt", "Simple write operation.\\n")
   
   # File Modes
   
