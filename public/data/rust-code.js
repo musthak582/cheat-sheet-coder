@@ -1041,6 +1041,2261 @@ export const rustCodeBlocks = [
   }
   `
   },
+  {
+    id: 'collections',
+    label: 'Collections',
+    content: `
+  // Collections in Rust
+  
+  fn main() {
+      // Vectors (\`Vec<T>\`)
+  
+      // Vectors are resizable arrays. Use the \`vec!\` macro to create a new vector.
+  
+      let mut vec: Vec<i32> = vec![1, 2, 3, 4, 5];
+      println!("Vector: {:?}", vec);  // Output: Vector: [1, 2, 3, 4, 5]
+  
+      // Adding elements to the vector.
+      vec.push(6);
+      println!("After push: {:?}", vec);  // Output: After push: [1, 2, 3, 4, 5, 6]
+  
+      // Removing elements from the vector.
+      vec.pop();
+      println!("After pop: {:?}", vec);  // Output: After pop: [1, 2, 3, 4, 5]
+  
+      // Accessing elements by index.
+      let third_element = vec[2];
+      println!("Third element: {}", third_element);  // Output: Third element: 3
+  
+      // Iterating over a vector.
+      for x in &vec {
+          println!("Vector item: {}", x);
+      }
+  
+      // Hash Maps (\`HashMap<K, V>\`)
+  
+      // Hash maps store key-value pairs. Use the \`HashMap\` type and \`insert\` method.
+  
+      use std::collections::HashMap;
+  
+      let mut scores = HashMap::new();
+      scores.insert(String::from("Blue"), 10);
+      scores.insert(String::from("Yellow"), 50);
+  
+      println!("Scores: {:?}", scores);  // Output: Scores: {"Yellow": 50, "Blue": 10}
+  
+      // Accessing values by key.
+      let team_name = String::from("Blue");
+      let score = scores.get(&team_name);
+      match score {
+          Some(&val) => println!("Score of {}: {}", team_name, val),
+          None => println!("Team not found"),
+      }
+  
+      // Iterating over a hash map.
+      for (key, value) in &scores {
+          println!("{}: {}", key, value);
+      }
+  
+      // Updating values in a hash map.
+      scores.entry(String::from("Blue")).or_insert(25);
+      println!("Updated Scores: {:?}", scores);  // Output: Updated Scores: {"Yellow": 50, "Blue": 10}
+  
+      // Sets (\`HashSet<T>\`)
+  
+      // Sets store unique values. Use the \`HashSet\` type and \`insert\` method.
+  
+      use std::collections::HashSet;
+  
+      let mut set: HashSet<i32> = HashSet::new();
+      set.insert(1);
+      set.insert(2);
+      set.insert(2);  // Duplicate, will not be added.
+      set.insert(3);
+  
+      println!("Set: {:?}", set);  // Output: Set: {1, 2, 3}
+  
+      // Checking for membership.
+      if set.contains(&2) {
+          println!("Set contains 2");
+      }
+  
+      // Removing a value from the set.
+      set.remove(&2);
+      println!("Set after removal: {:?}", set);  // Output: Set after removal: {1, 3}
+  
+      // Iterators and Itertools
+  
+      // Iterators provide a way to process sequences of elements.
+  
+      let numbers = vec![1, 2, 3, 4, 5];
+  
+      // Using an iterator to sum elements.
+      let sum: i32 = numbers.iter().sum();
+      println!("Sum: {}", sum);  // Output: Sum: 15
+  
+      // Creating an iterator and using various iterator adapters.
+      let doubled: Vec<i32> = numbers.iter().map(|x| x * 2).collect();
+      println!("Doubled: {:?}", doubled);  // Output: Doubled: [2, 4, 6, 8, 10]
+  
+      // Using filter to get only even numbers.
+      let evens: Vec<i32> = numbers.iter().filter(|&&x| x % 2 == 0).cloned().collect();
+      println!("Evens: {:?}", evens);  // Output: Evens: [2, 4]
+  
+      // Itertools provides extra iterator functionalities.
+  
+      use itertools::Itertools;
+  
+      // Chunking iterator elements.
+      let chunks: Vec<Vec<_>> = (1..10).chunks(3).into_iter().map(|chunk| chunk.collect()).collect();
+      println!("Chunks: {:?}", chunks);  // Output: Chunks: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+  
+      // Finding unique elements.
+      let unique: Vec<i32> = vec![1, 2, 2, 3, 3, 4].into_iter().unique().collect();
+      println!("Unique: {:?}", unique);  // Output: Unique: [1, 2, 3, 4]
+  }
+  `
+  },
+  {
+    id: 'traits_and_generics',
+    label: 'Traits & Generics',
+    content: `
+  // Traits and Generics in Rust
+  
+  // Traits define shared behavior that can be implemented by different types.
+  // Generics allow for types or functions to operate with any data type while ensuring type safety.
+  
+  fn main() {
+      // Defining and Implementing Traits
+  
+      // Define a trait named \`Summary\` with a single method \`summarize\`.
+      trait Summary {
+          fn summarize(&self) -> String;
+      }
+  
+      // Implement the \`Summary\` trait for the \`NewsArticle\` struct.
+      struct NewsArticle {
+          headline: String,
+          location: String,
+          author: String,
+          content: String,
+      }
+  
+      impl Summary for NewsArticle {
+          fn summarize(&self) -> String {
+              format!("{}, by {} ({})", self.headline, self.author, self.location)
+          }
+      }
+  
+      let article = NewsArticle {
+          headline: String::from("Breaking News!"),
+          location: String::from("New York"),
+          author: String::from("John Doe"),
+          content: String::from("This is the content of the news article."),
+      };
+  
+      println!("News Article Summary: {}", article.summarize());  // Output: News Article Summary: Breaking News!, by John Doe (New York)
+  
+      // Default Method Implementations
+  
+      // A trait can provide a default implementation for methods.
+      trait Displayable {
+          fn display(&self) -> String {
+              String::from("Displaying content.")
+          }
+      }
+  
+      struct DisplayItem {
+          title: String,
+      }
+  
+      impl Displayable for DisplayItem {
+          // Here we use the default implementation of \`display\`.
+      }
+  
+      let item = DisplayItem {
+          title: String::from("Item Title"),
+      };
+  
+      println!("Display: {}", item.display());  // Output: Display: Displaying content.
+  
+      // Using Generics
+  
+      // Generic functions can operate on any data type.
+      fn largest<T: PartialOrd>(list: &[T]) -> &T {
+          let mut largest = &list[0];
+          for item in list {
+              if item > largest {
+                  largest = item;
+              }
+          }
+          largest
+      }
+  
+      let number_list = vec![34, 50, 25, 100, 65];
+      println!("The largest number is {}", largest(&number_list));  // Output: The largest number is 100
+  
+      let char_list = vec!['y', 'm', 'a', 'q'];
+      println!("The largest char is {}", largest(&char_list));  // Output: The largest char is y
+  
+      // Trait Bounds and Constraints
+  
+      // Trait bounds restrict the types that can be used with generics.
+      fn print_summary<T: Summary>(item: &T) {
+          println!("Summary: {}", item.summarize());
+      }
+  
+      let article2 = NewsArticle {
+          headline: String::from("New Development!"),
+          location: String::from("San Francisco"),
+          author: String::from("Jane Smith"),
+          content: String::from("Details about the new development."),
+      };
+  
+      print_summary(&article2);  // Output: Summary: New Development!, by Jane Smith (San Francisco)
+  
+      // Associated Types
+  
+      // Traits can define associated types that are specified in the implementation.
+      trait Container {
+          type Item;
+  
+          fn contains(&self, item: &Self::Item) -> bool;
+      }
+  
+      struct BoxContainer<T> {
+          items: Vec<T>,
+      }
+  
+      impl<T: PartialEq> Container for BoxContainer<T> {
+          type Item = T;
+  
+          fn contains(&self, item: &T) -> bool {
+              self.items.contains(item)
+          }
+      }
+  
+      let box_container = BoxContainer {
+          items: vec![1, 2, 3, 4, 5],
+      };
+  
+      println!("Contains 3: {}", box_container.contains(&3));  // Output: Contains 3: true
+      println!("Contains 6: {}", box_container.contains(&6));  // Output: Contains 6: false
+  }
+  `
+  },
+  {
+    id: 'modules_and_packages',
+    label: 'Modules & Packages',
+    content: `
+  // Modules and Packages in Rust
+  
+  // Rust uses modules to organize code into smaller, reusable pieces.
+  // Packages and crates provide a way to distribute and share code.
+  
+  // Module Declaration and Organization
+  
+  // Modules in Rust can be defined in the same file or in separate files.
+  // They are used to group related functions, structs, enums, and constants.
+  
+  // Define a module named \`utilities\` in the same file.
+  mod utilities {
+      pub fn greet(name: &str) {
+          println!("Hello, {}!", name);
+      }
+  
+      // Nested module
+      pub mod math {
+          pub fn add(a: i32, b: i32) -> i32 {
+              a + b
+          }
+      }
+  }
+  
+  // Importing Modules (\`use\` statement)
+  
+  // Use the \`greet\` function from the \`utilities\` module.
+  fn main() {
+      utilities::greet("Rustacean");
+  
+      // Use the \`add\` function from the nested \`math\` module.
+      let sum = utilities::math::add(10, 20);
+      println!("Sum: {}", sum);  // Output: Sum: 30
+  }
+  
+  // Alternatively, import specific functions or modules for easier access.
+  use utilities::math::add;
+  let sum = add(5, 10);
+  println!("Sum: {}", sum);  // Output: Sum: 15
+  
+  // Packages and Crates
+  
+  // A package is a bundle of one or more crates that provide a set of functionality.
+  // A crate is a binary or library that can be compiled by Rust. It is the smallest unit of code distribution in Rust.
+  
+  // The \`Cargo\` Package Manager
+  
+  // Cargo is Rust's package manager and build system.
+  // It handles dependencies, building, and packaging code.
+  
+  // To create a new project, use:
+  // \$ cargo new my_project
+  
+  // To build a project, navigate to its directory and use:
+  // \$ cargo build
+  
+  // To run the project, use:
+  // \$ cargo run
+  
+  // To add dependencies, update the \`Cargo.toml\` file and use:
+  // \$ cargo build
+  
+  // Creating and Publishing Crates
+  
+  // To create a library crate, use:
+  // \$ cargo new --lib my_library
+  
+  // Add code to the \`src/lib.rs\` file.
+  
+  // To publish the crate, first create an account on https://crates.io/ and obtain an API token.
+  
+  // In the \`Cargo.toml\` file, add metadata such as the name, version, and description.
+  // Ensure that the code compiles and passes tests, then publish the crate using:
+  // \$ cargo publish
+  
+  // Here's an example structure of a \`Cargo.toml\` file for a library crate:
+  /*
+  [package]
+  name = "my_library"
+  version = "0.1.0"
+  authors = ["Your Name <you@example.com>"]
+  edition = "2021"
+  
+  [dependencies]
+  */
+  
+  // The crate can then be included in other projects by adding it to their \`Cargo.toml\` file:
+  /*
+  [dependencies]
+  my_library = "0.1"
+  */
+  `
+  },
+  {
+    id: 'standard_library',
+    label: 'Standard Library',
+    content: `
+  // Standard Library in Rust
+  
+  // Rust's standard library provides essential functionalities for various tasks,
+  // including handling common data types, I/O operations, collections, and concurrency.
+  
+  // Common Types
+  
+  // \`Option\` and \`Result\` are fundamental types used for handling optional and error-prone values.
+  
+  // The \`Option<T>\` type represents a value that can be either Some(T) or None.
+  fn divide(a: f64, b: f64) -> Option<f64> {
+      if b != 0.0 {
+          Some(a / b)
+      } else {
+          None  // Return None if division by zero
+      }
+  }
+  
+  if let Some(result) = divide(10.0, 2.0) {
+      println!("Result: {}", result);  // Output: Result: 5
+  } else {
+      println!("Cannot divide by zero");
+  }
+  
+  // The \`Result<T, E>\` type is used for returning and propagating errors.
+  fn read_file_content(path: &str) -> Result<String, std::io::Error> {
+      std::fs::read_to_string(path)  // Try reading the file and return the content or an error
+  }
+  
+  match read_file_content("example.txt") {
+      Ok(content) => println!("File content: {}", content),
+      Err(e) => println!("Error reading file: {}", e),
+  }
+  
+  // \`Vec<T>\` is a growable array type, and \`String\` is a growable UTF-8 encoded string.
+  let mut numbers = Vec::new();
+  numbers.push(1);
+  numbers.push(2);
+  numbers.push(3);
+  println!("Numbers: {:?}", numbers);  // Output: Numbers: [1, 2, 3]
+  
+  let mut text = String::from("Hello");
+  text.push_str(" World");
+  println!("Text: {}", text);  // Output: Text: Hello World
+  
+  // Common Traits
+  
+  // Traits define shared behavior that types can implement.
+  
+  // The \`Clone\` trait allows for creating a copy of a value.
+  #[derive(Clone)]
+  struct Point {
+      x: i32,
+      y: i32,
+  }
+  
+  let point1 = Point { x: 10, y: 20 };
+  let point2 = point1.clone();  // Creates a clone of point1
+  println!("Point2: ({}, {})", point2.x, point2.y);  // Output: Point2: (10, 20)
+  
+  // The \`Copy\` trait allows for bitwise copying of simple types like integers and floats.
+  #[derive(Copy, Clone)]
+  struct Color(u8, u8, u8);
+  
+  let red = Color(255, 0, 0);
+  let another_red = red;  // Copies the value of red
+  println!("Another Red: ({}, {}, {})", another_red.0, another_red.1, another_red.2);  // Output: Another Red: (255, 0, 0)
+  
+  // The \`Debug\` trait allows for formatting a type using the \`{:?}\` placeholder.
+  #[derive(Debug)]
+  struct Rectangle {
+      width: u32,
+      height: u32,
+  }
+  
+  let rect = Rectangle { width: 30, height: 50 };
+  println!("Rectangle: {:?}", rect);  // Output: Rectangle: Rectangle { width: 30, height: 50 }
+  
+  // The \`Default\` trait provides a way to create default values for types.
+  #[derive(Default)]
+  struct Config {
+      host: String,
+      port: u16,
+  }
+  
+  let config: Config = Default::default();
+  println!("Config: {}:{}", config.host, config.port);  // Output: Config: :0
+  
+  // I/O Operations
+  
+  // The \`std::io\` module provides utilities for reading and writing data.
+  // The \`std::fs\` module offers functions for interacting with the filesystem.
+  
+  use std::io::{self, Write};
+  
+  fn main() -> io::Result<()> {
+      let mut input = String::new();
+      println!("Enter your name:");
+  
+      io::stdin().read_line(&mut input)?;
+      println!("Hello, {}", input.trim());
+  
+      let mut file = std::fs::File::create("output.txt")?;
+      file.write_all(b"Hello, file!")?;
+      
+      Ok(())
+  }
+  
+  // Collections
+  
+  // Rust's standard library includes powerful collection types like \`Vec\`, \`HashMap\`, and \`HashSet\`.
+  
+  use std::collections::HashMap;
+  
+  let mut scores = HashMap::new();
+  scores.insert("Alice", 50);
+  scores.insert("Bob", 75);
+  println!("Scores: {:?}", scores);  // Output: Scores: {"Alice": 50, "Bob": 75}
+  
+  use std::collections::HashSet;
+  
+  let mut set = HashSet::new();
+  set.insert("Rust");
+  set.insert("Python");
+  println!("Set: {:?}", set);  // Output: Set: {"Rust", "Python"}
+  
+  // Concurrency
+  
+  // Rust provides tools for concurrent programming, including threads and synchronization primitives.
+  
+  use std::thread;
+  use std::sync::{Mutex, Arc};
+  
+  // Create a mutex-protected counter shared across threads
+  let counter = Arc::new(Mutex::new(0));
+  let mut handles = vec![];
+  
+  for _ in 0..10 {
+      let counter = Arc::clone(&counter);
+      let handle = thread::spawn(move || {
+          let mut num = counter.lock().unwrap();
+          *num += 1;
+      });
+      handles.push(handle);
+  }
+  
+  for handle in handles {
+      handle.join().unwrap();
+  }
+  
+  println!("Counter: {}", *counter.lock().unwrap());  // Output: Counter: 10
+  
+  // The \`std::thread\` module offers tools for spawning and managing threads.
+  // The \`std::sync\` module provides synchronization primitives like \`Mutex\` and \`Arc\` for safe concurrent access to shared data.
+  `
+  },
+  {
+    id: 'lifetimes_and_borrowing',
+    label: 'Lifetimes & Borrowing',
+    content: `
+  // Lifetimes and Borrowing in Rust
+  
+  // Rust uses lifetimes to ensure memory safety without needing a garbage collector.
+  // Lifetimes are annotations that tell the Rust compiler how long references are valid.
+  
+  // Basic Lifetime Annotations
+  
+  // A function with lifetime parameters
+  fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+      if x.len() > y.len() {
+          x
+      } else {
+          y
+      }
+  }
+  
+  // Here, 'a is a lifetime parameter that specifies the relationship between the lifetimes of the input references and the output reference.
+  
+  // Lifetime Elision Rules
+  
+  // Rust has lifetime elision rules that allow you to omit explicit lifetime annotations in some cases.
+  // The compiler infers the lifetimes based on these rules, making the code more readable.
+  
+  // For example, the following function is equivalent to the longest function above but without explicit lifetime annotations:
+  fn shorter(x: &str, y: &str) -> &str {
+      if x.len() < y.len() {
+          x
+      } else {
+          y
+      }
+  }
+  
+  // Structs with Lifetimes
+  
+  // Lifetimes can also be applied to structs to tie the lifetime of a reference held by the struct to a specific scope.
+  
+  struct ImportantExcerpt<'a> {
+      part: &'a str,
+  }
+  
+  fn main() {
+      let novel = String::from("Call me Ishmael. Some years ago...");
+      let first_sentence = novel.split('.').next().expect("Could not find a '.'");
+      let excerpt = ImportantExcerpt { part: first_sentence };
+  
+      println!("Excerpt: {}", excerpt.part);
+  }
+  
+  // The lifetime 'a in the struct definition ensures that the reference in 'part' does not outlive the string it points to.
+  
+  // Functions with Lifetimes
+  
+  // Lifetimes can be used in function definitions to ensure that the references returned by a function are valid as long as their inputs.
+  
+  fn first_word<'a>(s: &'a str) -> &'a str {
+      let bytes = s.as_bytes();
+  
+      for (i, &item) in bytes.iter().enumerate() {
+          if item == b' ' {
+              return &s[0..i];
+          }
+      }
+  
+      &s[..]
+  }
+  
+  // This function takes a string slice and returns a slice of the first word. The lifetime annotation 'a ensures that the slice returned does not outlive the input slice.
+  
+  // Advanced Lifetime and Borrow Checker Rules
+  
+  // Rust's borrow checker ensures references do not outlive their owners and enforces rules like:
+  // - One mutable reference or any number of immutable references at a time.
+  // - References must always be valid.
+  
+  // Here's a scenario demonstrating mutable and immutable borrowing rules:
+  fn mutable_and_immutable() {
+      let mut s = String::from("hello");
+  
+      let r1 = &s;  // immutable reference
+      let r2 = &s;  // another immutable reference
+      println!("Immutable references: {}, {}", r1, r2);
+  
+      // r1 and r2 are no longer used after this point, so we can create a mutable reference.
+      let r3 = &mut s;
+      r3.push_str(", world");
+      println!("Mutable reference: {}", r3);
+  }
+  
+  // More advanced usage can include combining lifetimes with generics or implementing complex data structures that adhere to borrowing rules.
+  `
+  },
+  {
+    id: 'concurrency_and_parallelism',
+    label: 'Concurrency & Parallelism',
+    content: `
+  // Concurrency and Parallelism in Rust
+  
+  // Rust provides powerful tools for concurrent and parallel programming, emphasizing safety and efficiency.
+  
+  // Threads and \`std::thread\`
+  
+  // Threads allow you to run multiple pieces of code simultaneously.
+  
+  use std::thread;
+  use std::time::Duration;
+  
+  fn main() {
+      let handle = thread::spawn(|| {
+          for i in 1..10 {
+              println!("Hello from the spawned thread: {}", i);
+              thread::sleep(Duration::from_millis(1));
+          }
+      });
+  
+      for i in 1..5 {
+          println!("Hello from the main thread: {}", i);
+          thread::sleep(Duration::from_millis(1));
+      }
+  
+      handle.join().unwrap();
+  }
+  
+  // The \`thread::spawn\` function creates a new thread and runs the closure in parallel.
+  // The \`join\` method waits for the thread to finish.
+  
+  // Message Passing with \`std::sync::mpsc\`
+  
+  // Rust's message passing system uses channels to allow threads to communicate by sending messages.
+  
+  use std::sync::mpsc;
+  use std::thread;
+  
+  fn main() {
+      let (tx, rx) = mpsc::channel();
+  
+      thread::spawn(move || {
+          let val = String::from("Hello from thread");
+          tx.send(val).unwrap();
+      });
+  
+      let received = rx.recv().unwrap();
+      println!("Received: {}", received);
+  }
+  
+  // The \`mpsc::channel\` function creates a transmitter (\`tx\`) and a receiver (\`rx\`).
+  // The \`tx.send\` method sends data to the channel, and \`rx.recv\` receives it.
+  
+  // Shared State with \`std::sync::Mutex\` and \`Arc\`
+  
+  // Rust allows safe sharing of state between threads using \`Mutex\` and \`Arc\`.
+  
+  use std::sync::{Arc, Mutex};
+  use std::thread;
+  
+  fn main() {
+      let counter = Arc::new(Mutex::new(0));
+      let mut handles = vec![];
+  
+      for _ in 0..10 {
+          let counter = Arc::clone(&counter);
+          let handle = thread::spawn(move || {
+              let mut num = counter.lock().unwrap();
+              *num += 1;
+          });
+          handles.push(handle);
+      }
+  
+      for handle in handles {
+          handle.join().unwrap();
+      }
+  
+      println!("Result: {}", *counter.lock().unwrap());
+  }
+  
+  // \`Arc\` (Atomic Reference Counting) is used to share ownership of the \`Mutex\` between threads.
+  // \`Mutex\` provides mutual exclusion to ensure only one thread accesses the data at a time.
+  
+  // \`std::sync::RwLock\`
+  
+  // \`RwLock\` is a more advanced synchronization primitive that allows multiple readers or a single writer.
+  
+  use std::sync::RwLock;
+  use std::thread;
+  
+  fn main() {
+      let lock = RwLock::new(5);
+  
+      // Multiple readers
+      {
+          let r1 = lock.read().unwrap();
+          let r2 = lock.read().unwrap();
+          println!("Readers: {} and {}", *r1, *r2);
+      }
+  
+      // Single writer
+      {
+          let mut w = lock.write().unwrap();
+          *w += 1;
+          println!("Writer: {}", *w);
+      }
+  }
+  
+  // \`RwLock\` allows multiple threads to read data simultaneously but ensures exclusive access for writing.
+  
+  // Asynchronous Programming with \`async\` and \`await\`
+  
+  // Rust's async/await syntax allows writing asynchronous code that looks synchronous.
+  
+  use std::time::Duration;
+  use tokio::time::sleep;
+  
+  #[tokio::main]
+  async fn main() {
+      let task1 = async_task(1);
+      let task2 = async_task(2);
+  
+      tokio::join!(task1, task2);
+  }
+  
+  async fn async_task(id: u32) {
+      println!("Task {} started", id);
+      sleep(Duration::from_secs(2)).await;
+      println!("Task {} completed", id);
+  }
+  
+  // The \`async\` keyword before a function or block marks it as asynchronous.
+  // \`await\` is used to pause the execution of an async function until the awaited future completes.
+  // \`tokio::main\` is an attribute macro that sets up the main function to run in the \`tokio\` runtime.
+  
+  `
+  },
+  {
+    id: 'macros',
+    label: 'Macros',
+    content: `
+  // Macros in Rust
+  
+  // Macros in Rust provide powerful metaprogramming capabilities, allowing you to write code that writes code.
+  
+  // Macro Basics (\`macro_rules!\`)
+  
+  // The \`macro_rules!\` construct is used to define macros in Rust. Macros allow code to be written once and reused multiple times, often simplifying repetitive tasks.
+  
+  macro_rules! say_hello {
+      () => {
+          println!("Hello, world!");
+      };
+  }
+  
+  fn main() {
+      say_hello!(); // Output: Hello, world!
+  }
+  
+  // The macro \`say_hello!\` is defined using \`macro_rules!\` and can be invoked with \`say_hello!();\`.
+  
+  // Declarative Macros
+  
+  // Declarative macros are defined using \`macro_rules!\` and allow pattern matching to transform the input tokens into output tokens.
+  
+  macro_rules! create_function {
+      ($name:ident) => {
+          fn $name() {
+              println!("You called the function: {:?}", stringify!($name));
+          }
+      };
+  }
+  
+  create_function!(foo);
+  create_function!(bar);
+  
+  fn main() {
+      foo(); // Output: You called the function: "foo"
+      bar(); // Output: You called the function: "bar"
+  }
+  
+  // The \`create_function!\` macro takes an identifier and creates a function with that name.
+  
+  // Procedural Macros
+  
+  // Procedural macros are more flexible and powerful, allowing complex code transformations. They are defined using functions and can operate on the abstract syntax tree (AST) of the Rust code.
+  
+  use proc_macro::TokenStream;
+  use quote::quote;
+  use syn;
+  
+  #[proc_macro]
+  pub fn my_macro(input: TokenStream) -> TokenStream {
+      // Parse the input tokens into a syntax tree
+      let ast = syn::parse_macro_input!(input as syn::DeriveInput);
+  
+      // Build the output tokens
+      let gen = quote! {
+          impl MyTrait for #ast {
+              fn my_function() {
+                  println!("Hello from a procedural macro!");
+              }
+          }
+      };
+  
+      gen.into()
+  }
+  
+  // This example shows a basic procedural macro using the \`syn\` and \`quote\` crates to parse and generate Rust code.
+  // Note: Procedural macros require setting up a separate crate with \`[lib]\` and \`proc-macro = true\` in \`Cargo.toml\`.
+  
+  // Derive Macros
+  
+  // Derive macros are a specific type of procedural macro used to automatically implement traits for types.
+  
+  use serde::Serialize;
+  
+  #[derive(Serialize)]
+  struct User {
+      name: String,
+      age: u32,
+  }
+  
+  // The \`#[derive(Serialize)]\` macro automatically implements the \`Serialize\` trait for the \`User\` struct.
+  
+  // Attribute Macros
+  
+  // Attribute macros are used to annotate code elements and modify their behavior.
+  
+  #[route(GET, "/")]
+  fn index() {
+      // Handler code here
+  }
+  
+  // In this example, the \`#[route(GET, "/")]\` attribute could be used by a framework to generate routing code for the function \`index\`.
+  // Attribute macros are implemented as procedural macros.
+  
+  `
+  },
+  {
+    id: 'async_programming',
+    label: 'Asynchronous Programming',
+    content: `
+  // Asynchronous Programming in Rust
+  
+  // Rust's asynchronous programming model allows you to write non-blocking code that can handle many tasks concurrently.
+  
+  // \`async\` and \`await\` Syntax
+  
+  // The \`async\` keyword is used to declare asynchronous functions or blocks, which return a \`Future\` instead of directly producing a result.
+  
+  async fn say_hello() {
+      println!("Hello, world!");
+  }
+  
+  // The \`await\` keyword is used to wait for the completion of an \`async\` operation. It can only be used inside an \`async\` function or block.
+  
+  async fn greet() {
+      say_hello().await;  // Await the result of the \`say_hello\` future
+  }
+  
+  // Futures and the \`Future\` Trait
+  
+  // A \`Future\` is an abstraction that represents a value that may not be available yet but will be computed asynchronously.
+  // The \`Future\` trait defines a single method, \`poll\`, which drives the future to completion.
+  
+  use std::future::Future;
+  use std::pin::Pin;
+  use std::task::{Context, Poll};
+  
+  struct MyFuture;
+  
+  impl Future for MyFuture {
+      type Output = u32;
+  
+      fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
+          Poll::Ready(42)  // This future immediately returns 42
+      }
+  }
+  
+  fn main() {
+      let future = MyFuture;
+      let result = futures::executor::block_on(future);
+      println!("Future result: {}", result);  // Output: Future result: 42
+  }
+  
+  // \`async\` Functions and Blocks
+  
+  // Asynchronous functions are declared with the \`async fn\` syntax, and their execution returns a \`Future\`.
+  // Asynchronous blocks are enclosed in \`async { ... }\` and can be used within synchronous functions.
+  
+  async fn fetch_data() -> String {
+      "Data fetched!".to_string()
+  }
+  
+  fn main() {
+      let data_future = fetch_data();  // Calling \`fetch_data\` returns a \`Future\`
+      let data = futures::executor::block_on(data_future);
+      println!("{}", data);  // Output: Data fetched!
+  }
+  
+  // Asynchronous I/O with \`tokio\` and \`async-std\`
+  
+  // Libraries like \`tokio\` and \`async-std\` provide runtime support for asynchronous I/O operations.
+  
+  use tokio::net::TcpStream;
+  
+  #[tokio::main]
+  async fn main() -> Result<(), Box<dyn std::error::Error>> {
+      let stream = TcpStream::connect("127.0.0.1:8080").await?;
+      println!("Connected to server!");
+      Ok(())
+  }
+  
+  // The \`#[tokio::main]\` attribute macro runs the \`main\` function within the \`tokio\` runtime.
+  
+  use async_std::task;
+  
+  async fn example() {
+      let data = fetch_data().await;
+      println!("Async-std: {}", data);
+  }
+  
+  fn main() {
+      task::block_on(example());
+  }
+  
+  // \`stream\` and \`async\` Iterators
+  
+  // The \`Stream\` trait in Rust is similar to \`Iterator\`, but for asynchronous sequences of values.
+  
+  use futures::stream::{self, StreamExt};
+  
+  #[tokio::main]
+  async fn main() {
+      let mut stream = stream::iter(vec![1, 2, 3, 4, 5]);
+  
+      while let Some(value) = stream.next().await {
+          println!("Got: {}", value);
+      }
+  }
+  
+  // This code demonstrates how to iterate over an asynchronous stream using \`stream::iter\` and \`StreamExt\`.
+  
+  `
+  },
+  {
+    id: 'unsafe_rust',
+    label: 'Unsafe Rust',
+    content: `
+  // Unsafe Rust
+  
+  // Rust's safety guarantees are enforced by its ownership, borrowing, and type system. However, there are scenarios where these checks are too restrictive. In such cases, Rust allows opting into "unsafe" code. 
+  
+  // Unsafe code gives you more control but also more responsibility. You must ensure the code adheres to Rust's safety guarantees manually.
+  
+  // When and Why to Use Unsafe
+  
+  // Use \`unsafe\` in Rust when you need to:
+  // - Dereference raw pointers
+  // - Call unsafe functions or methods
+  // - Access or modify mutable static variables
+  // - Implement unsafe traits
+  // - Perform certain types of optimizations
+  
+  // Example: Accessing hardware, interfacing with other languages, or implementing high-performance data structures.
+  
+  // Raw Pointers
+  
+  // Raw pointers (\`*const T\` and \`*mut T\`) can point to any memory location and are not subject to Rust's ownership rules.
+  
+  let mut num = 42;
+  let r1 = &num as *const i32;  // Immutable raw pointer
+  let r2 = &mut num as *mut i32;  // Mutable raw pointer
+  
+  // Dereferencing Raw Pointers
+  
+  // Dereferencing a raw pointer is unsafe and can lead to undefined behavior if not used carefully.
+  
+  unsafe {
+      println!("r1 points to: {}", *r1);  // Dereferencing immutable raw pointer
+      println!("r2 points to: {}", *r2);  // Dereferencing mutable raw pointer
+  }
+  
+  // Calling Unsafe Functions
+  
+  // Functions marked with \`unsafe\` can be called inside \`unsafe\` blocks. These functions may perform operations that are not checked by the Rust compiler.
+  
+  unsafe fn dangerous() {
+      println!("This is a dangerous function.");
+  }
+  
+  unsafe {
+      dangerous();  // Calling an unsafe function
+  }
+  
+  // Foreign Function Interface (FFI)
+  
+  // FFI allows Rust code to call functions from other languages, such as C. To use FFI, declare the foreign functions with \`extern\` blocks.
+  
+  extern "C" {
+      fn abs(input: i32) -> i32;
+  }
+  
+  fn main() {
+      unsafe {
+          println!("Absolute value of -3: {}", abs(-3));  // Calling a C function from Rust
+      }
+  }
+  
+  // FFI is powerful but requires careful handling to ensure memory safety across language boundaries.
+  
+  `
+  },
+  {
+    id: 'memory_management',
+    label: 'Memory Management',
+    content: `
+  // Memory Management in Rust
+  
+  // Rust's memory management is unique due to its ownership model, which ensures memory safety without needing a garbage collector.
+  
+  // Stack vs. Heap Memory
+  
+  // Stack memory is fast and follows a last-in, first-out (LIFO) approach. It's used for fixed-size variables and function call management.
+  // Heap memory is dynamic and used for data that needs to be allocated at runtime. It allows for variable size and lifespan.
+  
+  fn stack_memory_example() {
+      let x = 5;  // x is stored on the stack
+      let y = 10;  // y is also stored on the stack
+      println!("x = {}, y = {}", x, y);
+  }
+  
+  fn heap_memory_example() {
+      let s = Box::new(42);  // s is a Box, which allocates 42 on the heap
+      println!("s = {}", s);
+  }
+  
+  // Ownership and Borrowing for Memory Safety
+  
+  // Rust uses an ownership system to manage memory, ensuring there is a clear owner for each piece of data.
+  
+  fn ownership_example() {
+      let s1 = String::from("hello");  // s1 owns the string
+      let s2 = s1;  // s1 is moved to s2; s1 is no longer valid
+      // println!("{}", s1);  // This would cause a compile error
+      println!("{}", s2);  // s2 owns the string now
+  }
+  
+  // Borrowing allows references to data without taking ownership, ensuring safety by enforcing borrowing rules.
+  
+  fn borrowing_example() {
+      let s = String::from("hello");
+      print_string(&s);  // Borrowing s as an immutable reference
+      println!("{}", s);  // s is still valid here
+  }
+  
+  fn print_string(s: &String) {
+      println!("{}", s);
+  }
+  
+  // Smart Pointers
+  
+  // Smart pointers provide additional capabilities like automatic memory management and reference counting.
+  
+  fn smart_pointers_example() {
+      let b = Box::new(5);  // Box is a smart pointer that allocates on the heap
+      println!("b = {}", b);
+  
+      let rc = Rc::new(String::from("Rc string"));  // Rc is a reference-counting pointer
+      let rc_clone = Rc::clone(&rc);  // Cloning increases the reference count
+      println!("rc = {}, rc_clone = {}", rc, rc_clone);
+  
+      let arc = Arc::new(String::from("Arc string"));  // Arc is an atomic reference-counting pointer for thread-safe sharing
+      let arc_clone = Arc::clone(&arc);
+      println!("arc = {}, arc_clone = {}", arc, arc_clone);
+  
+      let ref_cell = RefCell::new(42);  // RefCell provides interior mutability
+      *ref_cell.borrow_mut() = 43;  // Borrowing mutably inside RefCell
+      println!("ref_cell = {}", ref_cell.borrow());
+  }
+  
+  // Interior Mutability
+  
+  // Interior mutability allows modifying data even when there are immutable references to it, usually through smart pointers like \`RefCell\` or \`Mutex\`.
+  
+  fn interior_mutability_example() {
+      let x = RefCell::new(5);
+      *x.borrow_mut() = 10;  // Changing the value inside RefCell
+      println!("x = {}", x.borrow());
+  }
+  
+  // Drop Trait and Resource Management
+  
+  // The Drop trait allows custom cleanup logic when an object goes out of scope. It's used to manage resources like file handles or network connections.
+  
+  struct CustomDrop {
+      data: String,
+  }
+  
+  impl Drop for CustomDrop {
+      fn drop(&mut self) {
+          println!("Dropping CustomDrop with data: {}", self.data);
+      }
+  }
+  
+  fn drop_example() {
+      let c = CustomDrop { data: String::from("Important data") };
+      println!("Created CustomDrop.");
+      // c is automatically dropped here
+  }
+  
+  // Combining these concepts allows for effective and safe memory management in Rust.
+  `
+  },
+  {
+    id: 'advanced_types',
+    label: 'Advanced Types',
+    content: `
+  // Advanced Types in Rust
+  
+  // Rust's type system includes several advanced features that enable powerful abstractions and type safety mechanisms.
+  
+  // Associated Types
+  
+  // Associated types allow you to specify placeholder types in a trait, which concrete types will define when they implement the trait.
+  
+  trait Container {
+      type Item;  // Associated type declaration
+      fn contains(&self, item: &Self::Item) -> bool;
+  }
+  
+  struct BoxContainer {
+      items: Vec<i32>,
+  }
+  
+  impl Container for BoxContainer {
+      type Item = i32;  // Concrete type for associated type
+      fn contains(&self, item: &i32) -> bool {
+          self.items.contains(item)
+      }
+  }
+  
+  fn associated_types_example() {
+      let box_container = BoxContainer { items: vec![1, 2, 3] };
+      println!("Contains 2? {}", box_container.contains(&2));  // Output: true
+  }
+  
+  // Type Aliases
+  
+  // Type aliases provide a way to create a new name for an existing type, which can simplify complex type signatures and improve code readability.
+  
+  type Kilometers = i32;
+  type Thunk = Box<dyn Fn() + Send + 'static>;
+  
+  fn type_aliases_example() {
+      let distance: Kilometers = 5;
+      println!("Distance in kilometers: {}", distance);  // Output: 5
+  
+      let expensive_calculation: Thunk = Box::new(|| println!("Thunk execution"));
+      expensive_calculation();  // Output: Thunk execution
+  }
+  
+  // Newtype Pattern
+  
+  // The newtype pattern involves creating a new type that wraps an existing type to provide additional type safety and abstraction.
+  
+  struct Meters(i32);
+  
+  impl Meters {
+      fn new(value: i32) -> Self {
+          Meters(value)
+      }
+      fn value(&self) -> i32 {
+          self.0
+      }
+  }
+  
+  fn newtype_pattern_example() {
+      let distance = Meters::new(50);
+      println!("Distance in meters: {}", distance.value());  // Output: 50
+  }
+  
+  // Phantom Data
+  
+  // Phantom data is used in Rust to indicate that a type has a generic parameter that is not used directly in its fields but is important for type-checking and generic constraints.
+  
+  use std::marker::PhantomData;
+  
+  struct PhantomExample<T> {
+      value: i32,
+      _marker: PhantomData<T>,  // PhantomData signifies the presence of T without actually using it
+  }
+  
+  impl<T> PhantomExample<T> {
+      fn new(value: i32) -> Self {
+          PhantomExample { value, _marker: PhantomData }
+      }
+  }
+  
+  fn phantom_data_example() {
+      let example: PhantomExample<String> = PhantomExample::new(42);
+      println!("Phantom example value: {}", example.value);  // Output: 42
+  }
+  
+  // Zero-Sized Types
+  
+  // Zero-sized types (ZSTs) are types that occupy no memory. They are often used for type-level information or as markers.
+  
+  struct Marker;
+  
+  fn zero_sized_types_example() {
+      let marker_instance = Marker;
+      println!("Marker instance created.");  // Output: Marker instance created.
+  }
+  
+  // Combining these advanced types enables powerful abstractions and ensures type safety in Rust.
+  `
+  },
+  {
+    id: 'iterators_and_closures',
+    label: 'Iterators & Closures',
+    content: `
+  // Iterators and Closures in Rust
+  
+  // Rust provides powerful abstractions for iteration and closures, enabling concise and expressive code.
+  
+  // Iterator Trait and Implementations
+  
+  // The \`Iterator\` trait defines how elements can be iterated over. It requires implementing the \`next\` method.
+  
+  struct Counter {
+      count: u32,
+  }
+  
+  impl Counter {
+      fn new() -> Counter {
+          Counter { count: 0 }
+      }
+  }
+  
+  impl Iterator for Counter {
+      type Item = u32;
+  
+      fn next(&mut self) -> Option<Self::Item> {
+          if self.count < 5 {
+              self.count += 1;
+              Some(self.count)
+          } else {
+              None
+          }
+      }
+  }
+  
+  fn iterator_example() {
+      let mut counter = Counter::new();
+      while let Some(n) = counter.next() {
+          println!("Counter: {}", n);  // Output: 1, 2, 3, 4, 5
+      }
+  }
+  
+  // Consuming and Adapting Iterators
+  
+  // Iterators can be consumed using methods like \`collect\`, \`sum\`, \`product\`, etc.
+  
+  fn consuming_iterators_example() {
+      let numbers: Vec<i32> = vec![1, 2, 3, 4, 5];
+      let sum: i32 = numbers.iter().sum();
+      println!("Sum: {}", sum);  // Output: Sum: 15
+  }
+  
+  // Iterators can also be adapted using methods like \`map\`, \`filter\`, \`take\`, \`skip\`.
+  
+  fn adapting_iterators_example() {
+      let numbers: Vec<i32> = vec![1, 2, 3, 4, 5];
+      let doubled: Vec<i32> = numbers.iter().map(|&x| x * 2).collect();
+      println!("Doubled: {:?}", doubled);  // Output: Doubled: [2, 4, 6, 8, 10]
+  }
+  
+  // Closure Syntax and Use Cases
+  
+  // Closures in Rust are anonymous functions that can capture variables from their environment.
+  
+  fn closure_example() {
+      let add_one = |x: i32| x + 1;
+      println!("5 + 1 = {}", add_one(5));  // Output: 5 + 1 = 6
+  
+      let numbers: Vec<i32> = vec![1, 2, 3, 4];
+      let result: Vec<i32> = numbers.iter().map(|&x| x * 2).collect();
+      println!("Doubled: {:?}", result);  // Output: Doubled: [2, 4, 6, 8]
+  }
+  
+  // Capturing Variables in Closures
+  
+  // Closures can capture variables from their environment by reference (\`&\`), by mutable reference (\`&mut\`), or by value (\`move\`).
+  
+  fn capture_example() {
+      let x = 5;
+      let print_x = || println!("x is: {}", x);  // Captures x by reference
+      print_x();  // Output: x is: 5
+  
+      let mut y = 10;
+      let mut add_to_y = |n: i32| y += n;  // Captures y by mutable reference
+      add_to_y(5);
+      println!("y is now: {}", y);  // Output: y is now: 15
+  
+      let z = String::from("hello");
+      let print_z = move || println!("z is: {}", z);  // Captures z by value
+      print_z();  // Output: z is: hello
+  }
+  
+  // Returning Closures
+  
+  // Rust allows you to return closures from functions, though the syntax can be a bit tricky because closures are usually unsized.
+  
+  fn returns_closure() -> impl Fn(i32) -> i32 {
+      |x| x + 1  // A closure that adds 1 to its input
+  }
+  
+  fn returning_closures_example() {
+      let add_one = returns_closure();
+      println!("10 + 1 = {}", add_one(10));  // Output: 10 + 1 = 11
+  }
+  
+  // Combining iterators and closures can lead to elegant and efficient code.
+  `
+  },
+  {
+    id: 'file_io',
+    label: 'File I/O',
+    content: `
+  // File I/O in Rust
+  
+  // Rust provides comprehensive support for file and directory operations through the \`std::fs\` and related modules.
+  
+  // Reading and Writing Files
+  
+  // To read from a file, we use \`std::fs::File\` and \`std::io::Read\` trait.
+  
+  use std::fs::File;
+  use std::io::{self, Read, Write};
+  
+  fn read_file_example() -> io::Result<()> {
+      let mut file = File::open("example.txt")?;  // Open the file
+      let mut contents = String::new();
+      file.read_to_string(&mut contents)?;  // Read file contents into a string
+      println!("File contents: {}", contents);  // Output the contents
+      Ok(())
+  }
+  
+  fn write_file_example() -> io::Result<()> {
+      let mut file = File::create("example.txt")?;  // Create a new file or overwrite the existing one
+      file.write_all(b"Hello, Rust!")?;  // Write a byte string to the file
+      println!("File written successfully.");
+      Ok(())
+  }
+  
+  // Using Buffers (BufReader, BufWriter)
+  
+  // Buffers can significantly improve I/O performance by reducing the number of read/write operations.
+  
+  use std::io::{BufReader, BufWriter};
+  
+  fn buffered_read_example() -> io::Result<()> {
+      let file = File::open("example.txt")?;
+      let mut reader = BufReader::new(file);
+      let mut contents = String::new();
+      reader.read_to_string(&mut contents)?;
+      println!("Buffered read contents: {}", contents);  // Output the contents
+      Ok(())
+  }
+  
+  fn buffered_write_example() -> io::Result<()> {
+      let file = File::create("example.txt")?;
+      let mut writer = BufWriter::new(file);
+      writer.write_all(b"Hello, Buffered Rust!")?;  // Write to the file using buffer
+      println!("Buffered write completed.");
+      Ok(())
+  }
+  
+  // Working with Directories (std::fs)
+  
+  // The \`std::fs\` module provides various functions for working with directories, such as creating, removing, and listing contents.
+  
+  use std::fs::{self, DirEntry};
+  use std::path::Path;
+  
+  fn create_directory_example() -> io::Result<()> {
+      fs::create_dir("example_dir")?;  // Create a new directory
+      println!("Directory created.");
+      Ok(())
+  }
+  
+  fn list_directory_contents_example() -> io::Result<()> {
+      for entry in fs::read_dir("example_dir")? {
+          let entry = entry?;
+          println!("Found file: {}", entry.path().display());
+      }
+      Ok(())
+  }
+  
+  fn remove_directory_example() -> io::Result<()> {
+      fs::remove_dir("example_dir")?;  // Remove the directory
+      println!("Directory removed.");
+      Ok(())
+  }
+  
+  // Error Handling in File Operations
+  
+  // Handling errors is crucial in file I/O operations. Rust's \`Result\` and \`Option\` types are used to manage potential errors.
+  
+  fn robust_file_handling_example() -> io::Result<()> {
+      match File::open("nonexistent_file.txt") {
+          Ok(mut file) => {
+              let mut contents = String::new();
+              file.read_to_string(&mut contents)?;
+              println!("File contents: {}", contents);
+          }
+          Err(e) => {
+              println!("Error opening file: {}", e);
+          }
+      }
+      Ok(())
+  }
+  
+  // Using std::path::Path and std::path::PathBuf
+  
+  // The \`Path\` and \`PathBuf\` types are used to handle and manipulate file and directory paths.
+  
+  use std::path::{Path, PathBuf};
+  
+  fn path_handling_example() {
+      let path = Path::new("example.txt");
+  
+      if path.exists() {
+          println!("Path exists: {}", path.display());
+      } else {
+          println!("Path does not exist: {}", path.display());
+      }
+  
+      let new_path: PathBuf = ["example", "dir", "file.txt"].iter().collect();
+      println!("Constructed path: {}", new_path.display());
+  }
+  
+  // Summary
+  // Rust's file I/O capabilities are powerful and safe, with strong support for error handling and efficient operations through buffering.
+  `
+  },
+  {
+    id: 'networking',
+    label: 'Networking',
+    content: `
+  // Networking in Rust
+  
+  // Rust provides robust support for network programming through the \`std::net\` module and asynchronous libraries like \`tokio\` and \`async-std\`.
+  
+  // Basic TCP and UDP Communication
+  
+  // TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are fundamental protocols for network communication.
+  // Rust's \`std::net\` module provides types and functions for both TCP and UDP communication.
+  
+  use std::net::{TcpListener, TcpStream, UdpSocket};
+  use std::io::{Read, Write};
+  
+  // TCP Communication
+  fn basic_tcp_communication() -> std::io::Result<()> {
+      // Setting up a TCP server
+      let listener = TcpListener::bind("127.0.0.1:7878")?;
+  
+      // Accepting connections
+      for stream in listener.incoming() {
+          let mut stream = stream?;
+          println!("Connection established!");
+  
+          // Reading data from the stream
+          let mut buffer = [0; 512];
+          stream.read(&mut buffer)?;
+          println!("Received: {:?}", &buffer[..]);
+  
+          // Writing data to the stream
+          stream.write(b"Hello from server!")?;
+      }
+      Ok(())
+  }
+  
+  // UDP Communication
+  fn basic_udp_communication() -> std::io::Result<()> {
+      // Creating a UDP socket
+      let socket = UdpSocket::bind("127.0.0.1:7878")?;
+  
+      // Sending data to a remote address
+      socket.send_to(b"Hello from client!", "127.0.0.1:7879")?;
+  
+      // Receiving data from a remote address
+      let mut buffer = [0; 512];
+      let (amt, src) = socket.recv_from(&mut buffer)?;
+      println!("Received {} bytes from {}: {:?}", amt, src, &buffer[..amt]);
+  
+      Ok(())
+  }
+  
+  // std::net Module
+  
+  // The \`std::net\` module provides essential types for network communication, including \`TcpStream\`, \`TcpListener\`, and \`UdpSocket\`.
+  
+  // Creating Clients and Servers
+  
+  // TCP Client
+  fn tcp_client() -> std::io::Result<()> {
+      let mut stream = TcpStream::connect("127.0.0.1:7878")?;
+      stream.write(b"Hello from client!")?;
+      Ok(())
+  }
+  
+  // TCP Server
+  fn tcp_server() -> std::io::Result<()> {
+      let listener = TcpListener::bind("127.0.0.1:7878")?;
+      for stream in listener.incoming() {
+          let mut stream = stream?;
+          let mut buffer = [0; 512];
+          stream.read(&mut buffer)?;
+          println!("Received: {:?}", &buffer[..]);
+          stream.write(b"Hello from server!")?;
+      }
+      Ok(())
+  }
+  
+  // Handling Multiple Connections
+  
+  // To handle multiple connections simultaneously, Rust provides tools for concurrent programming, like threads and async runtimes.
+  
+  use std::thread;
+  
+  fn handle_multiple_connections() -> std::io::Result<()> {
+      let listener = TcpListener::bind("127.0.0.1:7878")?;
+      for stream in listener.incoming() {
+          let stream = stream?;
+          thread::spawn(|| {
+              // Handle connection in a new thread
+              let mut buffer = [0; 512];
+              stream.read(&mut buffer).unwrap();
+              println!("Received: {:?}", &buffer[..]);
+          });
+      }
+      Ok(())
+  }
+  
+  // Asynchronous Networking with tokio or async-std
+  
+  // Asynchronous networking can be handled using libraries like \`tokio\` or \`async-std\`, which provide a runtime for async code.
+  
+  #[tokio::main]
+  async fn async_tcp_server() -> std::io::Result<()> {
+      use tokio::net::TcpListener;
+      let listener = TcpListener::bind("127.0.0.1:7878").await?;
+      loop {
+          let (mut socket, _) = listener.accept().await?;
+          tokio::spawn(async move {
+              let mut buffer = [0; 1024];
+              socket.read(&mut buffer).await.unwrap();
+              println!("Received: {:?}", &buffer[..]);
+              socket.write_all(b"Hello from async server!").await.unwrap();
+          });
+      }
+  }
+  
+  // To run the asynchronous examples, include the \`tokio\` or \`async-std\` crates in your \`Cargo.toml\`.
+  
+  `
+  },
+  {
+    id: 'serialization',
+    label: 'Serialization & Deserialization',
+    content: `
+  // Serialization and Deserialization in Rust
+  
+  // Rust's Serde library is a powerful framework for serializing and deserializing data in various formats, including JSON and YAML.
+  
+  // Using Serde for Serialization
+  
+  // To use Serde, you need to include the \`serde\` and \`serde_derive\` crates, and a specific format crate like \`serde_json\`.
+  
+  use serde::{Serialize, Deserialize};
+  use serde_json::{Result, to_string, from_str};
+  
+  #[derive(Serialize, Deserialize, Debug)]
+  struct Person {
+      name: String,
+      age: u8,
+      email: String,
+  }
+  
+  fn main() -> Result<()> {
+      // Creating an instance of the struct
+      let person = Person {
+          name: String::from("Alice"),
+          age: 30,
+          email: String::from("alice@example.com"),
+      };
+  
+      // Serializing the struct to a JSON string
+      let serialized = to_string(&person)?;
+      println!("Serialized: {}", serialized);
+  
+      // Deserializing the JSON string back to a struct
+      let deserialized: Person = from_str(&serialized)?;
+      println!("Deserialized: {:?}", deserialized);
+  
+      Ok(())
+  }
+  
+  // JSON and YAML Support
+  
+  // Serde supports many formats, including JSON and YAML.
+  // To work with YAML, you need to include the \`serde_yaml\` crate.
+  
+  use serde_yaml;
+  
+  fn serialize_to_yaml(person: &Person) -> serde_yaml::Result<String> {
+      // Serializing the struct to a YAML string
+      serde_yaml::to_string(person)
+  }
+  
+  fn deserialize_from_yaml(yaml_str: &str) -> serde_yaml::Result<Person> {
+      // Deserializing the YAML string back to a struct
+      serde_yaml::from_str(yaml_str)
+  }
+  
+  // Custom Serialization Formats
+  
+  // Serde allows you to define custom serialization and deserialization formats.
+  // You can implement the \`Serialize\` and \`Deserialize\` traits manually for custom behavior.
+  
+  use serde::{ser::Serializer, de::Deserializer};
+  
+  #[derive(Debug)]
+  struct CustomDate(String);
+  
+  impl Serialize for CustomDate {
+      fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+      where
+          S: Serializer,
+      {
+          serializer.serialize_str(&self.0)
+      }
+  }
+  
+  impl<'de> Deserialize<'de> for CustomDate {
+      fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+      where
+          D: Deserializer<'de>,
+      {
+          let s = String::deserialize(deserializer)?;
+          Ok(CustomDate(s))
+      }
+  }
+  
+  // Deserializing to Structs and Enums
+  
+  // Serde can deserialize data into complex structures, including nested structs and enums.
+  
+  #[derive(Serialize, Deserialize, Debug)]
+  enum Status {
+      Active,
+      Inactive,
+      Suspended,
+  }
+  
+  #[derive(Serialize, Deserialize, Debug)]
+  struct User {
+      username: String,
+      status: Status,
+  }
+  
+  fn deserialize_to_struct() -> Result<()> {
+      let json_data = r#"
+          {
+              "username": "bob",
+              "status": "Active"
+          }
+      "#;
+  
+      // Deserializing the JSON string to a struct
+      let user: User = serde_json::from_str(json_data)?;
+      println!("Deserialized User: {:?}", user);
+  
+      Ok(())
+  }
+  
+  // Error Handling in Serialization
+  
+  // Serde provides detailed error types for handling serialization and deserialization errors.
+  
+  fn handle_serialization_errors() -> Result<()> {
+      let invalid_json = r#"{ "name": "Alice", "age": "thirty" }"#;
+  
+      // Attempting to deserialize invalid JSON
+      match serde_json::from_str::<Person>(invalid_json) {
+          Ok(person) => println!("Deserialized: {:?}", person),
+          Err(e) => println!("Error during deserialization: {}", e),
+      }
+  
+      Ok(())
+  }
+  
+  // Add dependencies in your \`Cargo.toml\` file:
+  // \`serde = { version = "1.0", features = ["derive"] }\`
+  // \`serde_json = "1.0"\`
+  // \`serde_yaml = "0.8"\`
+  
+  `
+  },
+  {
+    id: 'testing',
+    label: 'Testing',
+    content: `
+  // Testing in Rust
+  
+  // Rust's testing framework is built into the language and managed by the Cargo package manager.
+  // Tests are functions annotated with the \`#[test]\` attribute.
+  
+  // Writing Tests with the #[test] Attribute
+  
+  // To define a test function, use the \`#[test]\` attribute. The test framework calls these functions during testing.
+  
+  #[cfg(test)]
+  mod tests {
+      #[test]
+      fn test_addition() {
+          let sum = 2 + 2;
+          assert_eq!(sum, 4);
+      }
+  
+      // Using assert!, assert_eq!, and assert_ne!
+  
+      // The \`assert!\` macro checks a boolean condition, and the test fails if the condition is false.
+      #[test]
+      fn test_boolean_assert() {
+          let is_true = true;
+          assert!(is_true);
+      }
+  
+      // The \`assert_eq!\` and \`assert_ne!\` macros compare two values for equality and inequality, respectively.
+      #[test]
+      fn test_equality() {
+          let result = 10 - 5;
+          assert_eq!(result, 5);
+      }
+  
+      #[test]
+      fn test_inequality() {
+          let result = 5 * 5;
+          assert_ne!(result, 20);  // 25 is not equal to 20
+      }
+  
+      // Test Organization and Modules
+  
+      // You can organize tests into modules, and they can be placed in the same file or in a separate \`tests\` directory.
+      #[cfg(test)]
+      mod math_tests {
+          #[test]
+          fn test_multiplication() {
+              let product = 3 * 3;
+              assert_eq!(product, 9);
+          }
+      }
+  
+      // Test Fixtures and Setup
+  
+      // You can use the \`#[setup]\` attribute to set up code that runs before each test.
+      // Rust doesn't have a built-in setup attribute, but you can define common setup functions to call within your tests.
+  
+      fn setup() -> u32 {
+          // Common setup code, like initializing data
+          42
+      }
+  
+      #[test]
+      fn test_with_setup() {
+          let value = setup();
+          assert_eq!(value, 42);
+      }
+  
+      // Running and Managing Tests with Cargo
+  
+      // Use \`cargo test\` to run all tests in your project. Cargo automatically compiles and runs tests.
+      // You can filter which tests to run by specifying a test name or partial name.
+  
+      // Run all tests
+      // $ cargo test
+  
+      // Run a specific test by name
+      // $ cargo test test_addition
+  
+      // Ignoring Tests
+  
+      // Use the \`#[ignore]\` attribute to exclude a test from the default test run.
+      // You can run ignored tests with \`cargo test -- --ignored\`.
+  
+      #[test]
+      #[ignore]
+      fn test_to_be_ignored() {
+          // This test will be ignored in the default test run
+      }
+  
+      // Test Output
+  
+      // Test functions can include print statements, but output is only displayed if the test fails.
+      // Use \`cargo test -- --nocapture\` to see all output during testing.
+  
+      #[test]
+      fn test_with_output() {
+          println!("This will only be shown if the test fails.");
+          assert_eq!(2 * 2, 4);
+      }
+  
+      // Use \`cargo test -- --nocapture\` to capture the output even if tests pass.
+      // $ cargo test -- --nocapture
+  
+      // Add the following dependencies in your \`Cargo.toml\` file if you're using external crates for testing:
+      // \`[dev-dependencies]\`
+      // \`rand = "0.8"\`  // Example for using the rand crate in tests
+  }
+  
+  `
+  },
+  {
+    id: 'metaprogramming',
+    label: 'Metaprogramming',
+    content: `
+  // Metaprogramming in Rust
+  
+  // Rust's metaprogramming capabilities include macros and the ability to generate code during compilation.
+  // Rust provides different types of macros: declarative macros (macro_rules!), procedural macros, and custom derive macros.
+  
+  // Procedural Macros
+  
+  // Procedural macros allow you to define code transformations that are more flexible than declarative macros.
+  // They can be used to generate new syntax or alter the structure of code.
+  // Procedural macros are defined in separate crates with \`proc-macro\` type and are annotated with \`#[proc_macro]\`.
+  
+  use proc_macro::TokenStream;
+  
+  #[proc_macro]
+  pub fn my_macro(input: TokenStream) -> TokenStream {
+      // Parse the input tokens and generate the output tokens
+      input
+  }
+  
+  // Custom Derive Macros
+  
+  // Custom derive macros are used to generate code for types that derive certain traits.
+  // They are annotated with \`#[proc_macro_derive]\` and can add methods or implement traits for types.
+  
+  #[proc_macro_derive(MyTrait)]
+  pub fn my_trait_derive(input: TokenStream) -> TokenStream {
+      // Implement the code that adds trait methods to the type
+      input
+  }
+  
+  // To use a custom derive macro, you add it to a struct or enum as follows:
+  
+  #[derive(MyTrait)]
+  struct MyStruct {
+      field: i32,
+  }
+  
+  // Attribute Macros
+  
+  // Attribute macros allow you to create custom attributes that can modify or annotate functions, modules, or other items.
+  // They are annotated with \`#[proc_macro_attribute]\`.
+  
+  #[proc_macro_attribute]
+  pub fn my_attribute(attr: TokenStream, item: TokenStream) -> TokenStream {
+      // Process the attribute and the item, then return the modified item
+      item
+  }
+  
+  // You use the attribute macro like this:
+  
+  #[my_attribute]
+  fn my_function() {
+      // Function body
+  }
+  
+  // Function-like Macros
+  
+  // Function-like macros are similar to declarative macros but provide more control over syntax and code generation.
+  // They are defined with \`#[proc_macro]\`.
+  
+  #[proc_macro]
+  pub fn my_macro(input: TokenStream) -> TokenStream {
+      // Process the input tokens and generate the output tokens
+      input
+  }
+  
+  // Using proc_macro for Advanced Metaprogramming
+  
+  // The \`proc_macro\` crate provides tools for parsing, inspecting, and generating Rust code during compilation.
+  // It's used to build procedural macros and other advanced metaprogramming features.
+  
+  extern crate proc_macro;
+  use proc_macro::{TokenStream, TokenTree};
+  
+  #[proc_macro]
+  pub fn advanced_macro(input: TokenStream) -> TokenStream {
+      let mut output = TokenStream::new();
+  
+      // Iterate through the tokens and process them
+      for token in input {
+          match token {
+              TokenTree::Ident(ident) => {
+                  // Handle identifiers
+                  output.extend(TokenStream::from(TokenTree::Ident(ident)));
+              }
+              TokenTree::Literal(lit) => {
+                  // Handle literals
+                  output.extend(TokenStream::from(TokenTree::Literal(lit)));
+              }
+              _ => {}
+          }
+      }
+  
+      output
+  }
+  
+  // Example of using a procedural macro to define a custom derive macro
+  // In your main crate, you use the custom macro as follows:
+  
+  #[derive(AdvancedMacro)]
+  struct AnotherStruct {
+      value: u32,
+  }
+  
+  // This is a simplified example, and in practice, procedural macros can perform complex transformations and code generation.
+  
+  `
+  },
+  {
+    id: 'performance-optimization',
+    label: 'Performance Optimization',
+    content: `
+  // Performance Optimization in Rust
+  
+  // Rust is designed for high performance with safety, and provides several tools and techniques to optimize code.
+  // This section covers profiling and benchmarking, zero-cost abstractions, memory management, common performance pitfalls, and efficient use of collections.
+  
+  // Profiling and Benchmarking Code
+  
+  // Profiling helps identify which parts of the code are consuming the most resources.
+  // Benchmarking measures the performance of specific code segments. Rust has built-in tools and libraries for these purposes.
+  
+  // Using \`cargo bench\` to run benchmarks
+  // Add \`#[bench]\` attribute to functions and use \`test::Bencher\` for benchmarking
+  // Add \`criterion\` crate for more advanced benchmarking
+  
+  extern crate test;
+  use test::Bencher;
+  
+  #[bench]
+  fn bench_example(b: &mut Bencher) {
+      b.iter(|| (0..1000).fold(0, |acc, x| acc + x))
+  }
+  
+  // With \`criterion\`, you can write more detailed benchmarks:
+  
+  extern crate criterion;
+  use criterion::{black_box, criterion_group, criterion_main, Criterion};
+  
+  fn criterion_benchmark(c: &mut Criterion) {
+      c.bench_function("fib 20", |b| b.iter(|| fib(black_box(20))));
+  }
+  
+  fn fib(n: u64) -> u64 {
+      match n {
+          0 => 0,
+          1 => 1,
+          _ => fib(n - 1) + fib(n - 2),
+      }
+  }
+  
+  criterion_group!(benches, criterion_benchmark);
+  criterion_main!(benches);
+  
+  // Zero-Cost Abstractions
+  
+  // Rust's abstractions, such as iterators and traits, are designed to be zero-cost.
+  // This means they incur no runtime overhead, achieving the same performance as hand-written code.
+  
+  let numbers = vec![1, 2, 3, 4, 5];
+  let doubled: Vec<_> = numbers.iter().map(|x| x * 2).collect();
+  // The iterator chain here is optimized to a loop with no additional cost
+  
+  // Memory Management Techniques
+  
+  // Rust's ownership system ensures memory safety without garbage collection, but efficient memory management is still crucial.
+  // Techniques include minimizing heap allocations, reusing memory, and understanding ownership transfer.
+  
+  let mut v = Vec::with_capacity(10);
+  for i in 0..10 {
+      v.push(i);
+  }
+  // Pre-allocating capacity for the vector avoids multiple allocations during push
+  
+  // Using smart pointers like \`Rc\`, \`Arc\`, and \`Box\` effectively
+  
+  use std::rc::Rc;
+  let x = Rc::new(5);
+  let y = Rc::clone(&x);
+  
+  // Avoiding Common Performance Pitfalls
+  
+  // Common pitfalls include unnecessary cloning, excessive heap allocations, and improper use of collections.
+  
+  let s1 = "hello".to_string();
+  let s2 = s1.clone(); // Avoid cloning unless necessary
+  
+  // Use references or borrowing instead of cloning or moving data
+  
+  fn print_len(s: &String) {
+      println!("Length: {}", s.len());
+  }
+  
+  let s = String::from("hello");
+  print_len(&s); // Borrowing the string instead of cloning
+  
+  // Using \`std::collections\` Effectively
+  
+  // Choosing the right collection type can have a significant impact on performance.
+  // Use \`Vec\` for ordered sequences, \`HashMap\` for key-value pairs, and \`HashSet\` for unique elements.
+  
+  use std::collections::HashMap;
+  
+  let mut scores = HashMap::new();
+  scores.insert("Alice", 10);
+  scores.insert("Bob", 20);
+  
+  // For performance-critical paths, consider using collections with more specialized behavior or tuning their parameters.
+  
+  let mut large_vec = Vec::with_capacity(1000);
+  // Pre-allocate space for large vectors to avoid multiple reallocations
+  
+  // Profiling and Benchmarking Tools
+  
+  // Profiling and benchmarking tools like \`valgrind\`, \`perf\`, and \`criterion\` can help identify and address performance issues.
+  // Use \`cargo bench\` and \`cargo flamegraph\` to benchmark and profile Rust code.
+  
+  
+  // \`flamegraph\` provides a visual representation of where time is being spent in your application
+  
+  // Example command to generate a flamegraph
+  // cargo install flamegraph
+  // cargo flamegraph
+  
+  // Summary
+  
+  // Rust's performance can be optimized by careful profiling, using zero-cost abstractions, efficient memory management, avoiding common pitfalls, and selecting the right collections.
+  // Employ the above techniques and tools to write highly efficient Rust code.
+  
+  `
+  },
+  {
+    id: 'best-practices-idiomatic-rust',
+    label: 'Best Practices & Idiomatic Rust',
+    content: `
+  // Best Practices and Idiomatic Rust
+  
+  // Rust encourages a specific style and set of practices that make the code more readable, efficient, and safe.
+  // This section covers writing idiomatic Rust code, effective error handling, using \`Result\` and \`Option\` types, following naming conventions, and understanding Rust's ownership model.
+  
+  // Writing Idiomatic Rust Code
+  
+  // Idiomatic Rust code leverages the language's features and follows its conventions.
+  // Key points include using pattern matching, iterator adapters, and avoiding manual memory management.
+  
+  let numbers = vec![1, 2, 3, 4, 5];
+  let doubled: Vec<_> = numbers.iter().map(|x| x * 2).collect();
+  // Use iterators and functional programming style for concise and clear code
+  
+  let some_value = Some(10);
+  if let Some(v) = some_value {
+      println!("Found a value: {}", v);
+  }
+  // Use pattern matching (if let, match) for handling enums like \`Option\` and \`Result\`
+  
+  // Prefer \`let\` over \`var\`, minimize the use of mutable variables, and scope variables tightly
+  
+  let mut total = 0;
+  for i in 1..=10 {
+      total += i;
+  }
+  // Use \`for\` loops and iterators rather than manual indexing
+  
+  // Effective Error Handling
+  
+  // Rust's approach to error handling emphasizes safety and explicit handling of potential failures.
+  // Use the \`Result\` and \`Option\` types for handling errors and optional values, respectively.
+  
+  fn divide(dividend: f64, divisor: f64) -> Result<f64, &'static str> {
+      if divisor == 0.0 {
+          Err("Cannot divide by zero")
+      } else {
+          Ok(dividend / divisor)
+      }
+  }
+  
+  match divide(10.0, 2.0) {
+      Ok(result) => println!("Result: {}", result),
+      Err(e) => println!("Error: {}", e),
+  }
+  
+  // Using \`Result\` and \`Option\` Types
+  
+  // \`Result<T, E>\` and \`Option<T>\` are enums used for error handling and representing optional values.
+  // They encourage handling errors explicitly and avoiding crashes.
+  
+  fn get_user_age(name: &str) -> Option<u32> {
+      let user_ages = vec![("Alice", 30), ("Bob", 25)];
+      for (user, age) in user_ages {
+          if user == name {
+              return Some(age);
+          }
+      }
+      None
+  }
+  
+  if let Some(age) = get_user_age("Alice") {
+      println!("Alice's age is {}", age);
+  } else {
+      println!("User not found");
+  }
+  
+  // Using the \`?\` operator simplifies error propagation in functions returning \`Result\`.
+  
+  fn read_username_from_file() -> Result<String, std::io::Error> {
+      use std::fs::File;
+      use std::io::Read;
+      
+      let mut file = File::open("username.txt")?;
+      let mut username = String::new();
+      file.read_to_string(&mut username)?;
+      Ok(username)
+  }
+  
+  // Following Rust Naming Conventions
+  
+  // Follow Rust's naming conventions for readability and consistency:
+  // - Use snake_case for variable, function, and module names
+  // - Use PascalCase for type names and traits
+  // - Use SCREAMING_SNAKE_CASE for constants and statics
+  
+  let user_name = "John";  // snake_case for variables
+  struct UserProfile {     // PascalCase for structs
+      user_id: u32,
+      email: String,
+  }
+  const MAX_USERS: u32 = 1000;  // SCREAMING_SNAKE_CASE for constants
+  
+  // Understanding and Using Rust’s Ownership Model
+  
+  // Rust's ownership model is a key feature that enforces memory safety and concurrency without a garbage collector.
+  // Understanding ownership, borrowing, and lifetimes is crucial for writing safe and efficient Rust code.
+  
+  fn main() {
+      let s1 = String::from("hello");
+      let s2 = s1;  // s1 is moved to s2, s1 is no longer valid
+  
+      // println!("{}", s1);  // This line would cause a compile error because s1 is no longer valid
+  
+      let s3 = s2.clone();  // s2 is cloned into s3, both are now valid
+      println!("{}", s3);
+      
+      let len = calculate_length(&s3);  // Borrowing s3 without taking ownership
+      println!("The length of '{}' is {}.", s3, len);
+  }
+  
+  fn calculate_length(s: &String) -> usize {  // s is a reference to a String
+      s.len()  // returning the length of the string
+  }
+  
+  // Summary
+  
+  // Writing idiomatic Rust involves embracing its unique features like ownership, pattern matching, and zero-cost abstractions.
+  // Follow best practices for error handling, naming conventions, and use of the ownership model to write clear, efficient, and safe Rust code.
+  
+  `
+  },
+  {
+    id: 'deployment-packaging',
+    label: 'Deployment & Packaging',
+    content: `
+  // Deployment and Packaging
+  
+  // Deploying Rust applications involves building, distributing, managing dependencies, and ensuring compatibility across platforms. This section covers key aspects of deploying Rust applications.
+  
+  // Building and Distributing Rust Applications
+  
+  // Use Cargo, Rust's package manager and build system, to build and package Rust applications.
+  
+  // To build a release version of your application:
+  // cargo build --release
+  
+  // The executable will be located in target/release/.
+  
+  // Cross-Compilation
+  
+  // Rust supports cross-compilation for targeting different platforms.
+  
+  // To cross-compile for a specific target (e.g., ARM):
+  // cargo build --target=arm-unknown-linux-gnueabihf
+  
+  // Ensure you have the target's toolchain installed (e.g., \`arm-linux-gnueabihf-gcc\`).
+  
+  // Creating Docker Images for Rust Applications
+  
+  // Dockerizing Rust applications simplifies deployment and ensures consistency across environments.
+  
+  // Example Dockerfile for a Rust application:
+  // FROM rust:latest as build
+  
+  // WORKDIR /usr/src/myapp
+  // COPY . .
+  
+  // RUN cargo build --release
+  
+  // FROM debian:buster-slim
+  // COPY --from=build /usr/src/myapp/target/release/myapp /usr/local/bin/myapp
+  
+  // CMD ["myapp"]
+  
+  // Managing Dependencies with Cargo
+  
+  // Use Cargo.toml to specify dependencies and manage crates (libraries) used in your Rust project.
+  
+  // Example Cargo.toml:
+  // [dependencies]
+  // serde = "1.0"
+  // reqwest = { version = "0.11", features = ["json"] }
+  
+  // Versioning and Publishing Crates
+  
+  // Use Cargo to version your crates and publish them to crates.io, Rust's package registry.
+  
+  // To publish a crate:
+  // cargo login
+  // cargo publish
+  
+  // Ensure your Cargo.toml specifies the crate version and other metadata.
+  
+  // Summary
+  
+  // Deploying and packaging Rust applications involves using Cargo for building, managing dependencies, and versioning. Cross-compilation and Dockerization ensure compatibility and ease of deployment across different platforms and environments.
+  
+  `
+  }
+  
+  
   
   
   
