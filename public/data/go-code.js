@@ -121,29 +121,6 @@ export const goCodeBlocks = [
       fmt.Println("Zero String:", zeroString)
       fmt.Println("Zero Bool:", zeroBool)
   }
-  
-  /*
-  Key Points:
-  
-  1. Variables:
-     - Declared using the \`var\` keyword.
-     - Can be assigned an initial value.
-     - Go supports type inference, where the type is determined by the assigned value.
-     - Short variable declaration (\`:=\`) can be used for local variables within functions.
-  
-  2. Constants:
-     - Declared using the \`const\` keyword.
-     - Must be assigned a value at the time of declaration.
-     - Cannot be changed after declaration.
-     - Useful for values that do not change, like mathematical constants or fixed messages.
-  
-  3. Zero Values:
-     - Variables declared without an initial value are assigned a default zero value.
-     - Zero values depend on the variable's type (e.g., 0 for int, "" for string, false for bool).
-  
-  4. Multiple Declarations:
-     - Variables and constants can be declared together in a single line for convenience.
-  */
   `
   },
   {
@@ -226,37 +203,6 @@ export const goCodeBlocks = [
       fmt.Println("Zero Bool:", zeroBool)
       fmt.Println("Zero String:", zeroString)
   }
-  
-  /*
-  Key Points:
-  
-  1. Integers:
-     - Signed integers: \`int8\`, \`int16\`, \`int32\`, \`int64\`.
-     - Unsigned integers: \`uint8\`, \`uint16\`, \`uint32\`, \`uint64\`.
-  
-  2. Floating-Point Numbers:
-     - \`float32\` and \`float64\`.
-  
-  3. Complex Numbers:
-     - \`complex64\` (32-bit real and imaginary parts).
-     - \`complex128\` (64-bit real and imaginary parts).
-  
-  4. Boolean:
-     - \`bool\`.
-  
-  5. Strings:
-     - \`string\`.
-  
-  6. Characters:
-     - \`rune\` (alias for \`int32\`).
-  
-  7. Zero Values:
-     - Default values assigned to variables of different types when they are declared without an initial value.
-     - \`int\`: 0
-     - \`float64\`: 0.0
-     - \`bool\`: false
-     - \`string\`: ""
-  */
   `
   },
   {
@@ -332,47 +278,6 @@ export const goCodeBlocks = [
       a >>= 1 // a = a >> 1
       fmt.Println("a >>= 1:", a) // Output: a >>= 1: 10
   }
-  
-  /*
-  Key Points:
-  
-  1. Arithmetic Operators:
-     - \`+\`: Addition
-     - \`-\`: Subtraction
-     - \`*\`: Multiplication
-     - \`/\`: Division
-     - \`%\`: Modulus
-  
-  2. Comparison Operators:
-     - \`==\`: Equal to
-     - \`!=\`: Not equal to
-     - \`>\`: Greater than
-     - \`<\`: Less than
-     - \`>=\`: Greater than or equal to
-     - \`<=\`: Less than or equal to
-  
-  3. Logical Operators:
-     - \`&&\`: Logical AND
-     - \`||\`: Logical OR
-     - \`!\`: Logical NOT
-  
-  4. Bitwise Operators:
-     - \`&\`: Bitwise AND
-     - \`|\`: Bitwise OR
-     - \`^\`: Bitwise XOR
-     - \`&^\`: Bitwise AND NOT
-     - \`<<\`: Left shift
-     - \`>>\`: Right shift
-  
-  5. Compound Assignment Operators:
-     - \`+=\`, \`-=\`, \`*=\`, \`/=\`, \`%=\`
-     - \`&=\`, \`|=\`, \`^=\`, \`&^=\`
-     - \`<<=\`, \`>>=\`
-  
-  These operators are used to perform operations on variables and values in Go, 
-  providing essential functionality for arithmetic calculations, comparisons, 
-  logical operations, bitwise manipulations, and compound assignments.
-  */
   `
   },
   {
@@ -437,5 +342,183 @@ export const goCodeBlocks = [
   }
   `
   },
+  {
+    id: 'conditionals',
+    label: 'Conditional Statements',
+    content: `
+  // Conditional Statements in Go
+  
+  package main
+  
+  import "fmt"
+  
+  func main() {
+      a := 10
+      b := 20
+  
+      // if statement
+      if a < b {
+          fmt.Println("a is less than b")  // Output: a is less than b
+      }
+  
+      // if-else statement
+      if a > b {
+          fmt.Println("a is greater than b")
+      } else {
+          fmt.Println("a is not greater than b")  // Output: a is not greater than b
+      }
+  
+      // if-else if-else statement
+      if a == b {
+          fmt.Println("a is equal to b")
+      } else if a < b {
+          fmt.Println("a is less than b")  // Output: a is less than b
+      } else {
+          fmt.Println("a is greater than b")
+      }
+  
+      // Short statement with if
+      if c := a + b; c > 30 {
+          fmt.Println("c is greater than 30")  // Output: c is greater than 30
+      } else {
+          fmt.Println("c is not greater than 30")
+      }
+  }
+  `
+  },
+  {
+    id: 'switch_statements',
+    label: 'Switch Statements',
+    content: `
+  // Switch Statements in Go
+  
+  package main
+  
+  import "fmt"
+  
+  func main() {
+      // Example 1: Basic Switch Statement
+      number := 2
+      switch number {
+      case 1:
+          fmt.Println("One")  // Output: (nothing, because number is not 1)
+      case 2:
+          fmt.Println("Two")  // Output: Two
+      case 3:
+          fmt.Println("Three")
+      default:
+          fmt.Println("Other number")
+      }
+  
+      // Example 2: Multiple Expressions in Case
+      day := "Saturday"
+      switch day {
+      case "Saturday", "Sunday":
+          fmt.Println("Weekend")  // Output: Weekend
+      default:
+          fmt.Println("Weekday")
+      }
+  
+      // Example 3: Switch with Condition
+      score := 85
+      switch {
+      case score >= 90:
+          fmt.Println("A")  // Output: (nothing, because score is not >= 90)
+      case score >= 80:
+          fmt.Println("B")  // Output: B
+      case score >= 70:
+          fmt.Println("C")
+      default:
+          fmt.Println("F")
+      }
+  
+      // Example 4: Switch Without Expression
+      i := 10
+      switch {
+      case i < 5:
+          fmt.Println("i is less than 5")  // Output: (nothing, because i is not < 5)
+      case i == 10:
+          fmt.Println("i is 10")  // Output: i is 10
+      default:
+          fmt.Println("i is greater than 5")
+      }
+  
+      // Example 5: Fallthrough Keyword
+      grade := "B"
+      switch grade {
+      case "A":
+          fmt.Println("Excellent")
+      case "B":
+          fmt.Println("Good")  // Output: Good
+          fallthrough
+      case "C":
+          fmt.Println("Fair")  // Output: Fair
+      default:
+          fmt.Println("Fail")
+      }
+  }
+  `
+  },
+  {
+    id: 'loops',
+    label: 'Loops',
+    content: `
+  // Loops in Go
+  
+  package main
+  
+  import "fmt"
+  
+  func main() {
+      // For loop: basic syntax
+      for i := 0; i < 5; i++ {
+          fmt.Println(i)  // Output: 0, 1, 2, 3, 4
+      }
+  
+      // While loop: Go doesn't have a while loop, but you can use for as a while loop
+      j := 0
+      for j < 5 {
+          fmt.Println(j)  // Output: 0, 1, 2, 3, 4
+          j++
+      }
+  
+      // Infinite loop
+      for {
+           fmt.Println("Infinite loop")
+      }
+  
+      // Loop with break statement
+      for k := 0; k < 10; k++ {
+          if k == 5 {
+              break
+          }
+          fmt.Println(k)  // Output: 0, 1, 2, 3, 4
+      }
+  
+      // Loop with continue statement
+      for l := 0; l < 10; l++ {
+          if l%2 == 0 {
+              continue
+          }
+          fmt.Println(l)  // Output: 1, 3, 5, 7, 9
+      }
+  
+      // Range loop: iterating over an array
+      arr := []int{10, 20, 30, 40, 50}
+      for index, value := range arr {
+          fmt.Printf("Index: %d, Value: %d\\n", index, value)
+          // Output:
+          // Index: 0, Value: 10
+          // Index: 1, Value: 20
+          // Index: 2, Value: 30
+          // Index: 3, Value: 40
+          // Index: 4, Value: 50
+      }
+  }
+  `
+  }
+  
+  
+  
   
 ];
